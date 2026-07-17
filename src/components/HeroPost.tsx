@@ -16,22 +16,50 @@ export default function HeroPost({ post }: { post: any }) {
   const label = categoryLabels[post.category]?.[lang]
 
   return (
-    <Link href={`/${post.category}/${post.slug.current}`} className="group block relative w-full overflow-hidden bg-black" style={{ aspectRatio: '21/9' }}>
-      {post.cover_image && (
-        <Image
-          src={urlFor(post.cover_image).width(1400).height(600).url()}
-          alt={title}
-          fill
-          priority
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-          style={{ opacity: 0.6 }}
-        />
-      )}
-      <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-12">
-        <span className="text-xs uppercase tracking-widest mb-2" style={{ color: 'rgba(255,255,255,0.7)' }}>{label}</span>
-        <h1 className={`text-3xl md:text-5xl font-bold text-white leading-tight max-w-3xl ${lang === 'ko' ? 'font-headline-ko' : 'font-headline-en'}`}>
-          {title}
-        </h1>
+    <Link href={`/${post.category}/${post.slug?.current ?? ''}`} style={{ textDecoration: 'none', display: 'block' }}>
+      <div style={{ border: '1px solid var(--color-border)', backgroundColor: 'var(--color-paper)', marginBottom: '2px' }}>
+        {/* Grid-texture intro section */}
+        <div className="grid-texture" style={{ padding: '48px 48px 40px' }}>
+          <span style={{
+            display: 'inline-block',
+            fontSize: '11px',
+            fontWeight: 500,
+            color: 'var(--color-blue)',
+            border: '1px solid var(--color-blue)',
+            borderRadius: '999px',
+            padding: '2px 12px',
+            marginBottom: '20px',
+            textTransform: 'capitalize',
+            letterSpacing: '0.03em',
+          }}>
+            {label}
+          </span>
+          <h1 style={{
+            fontSize: 'clamp(28px, 4vw, 52px)',
+            fontWeight: 700,
+            lineHeight: 1.1,
+            color: 'var(--color-blue)',
+            letterSpacing: '-0.03em',
+            margin: '0 0 20px',
+            maxWidth: '780px',
+          }}>
+            {title}
+          </h1>
+        </div>
+
+        {/* Full-width blue-tinted image */}
+        {post.cover_image && (
+          <div style={{ position: 'relative', aspectRatio: '21/9', overflow: 'hidden', backgroundColor: 'var(--color-blue)' }}>
+            <Image
+              src={urlFor(post.cover_image).width(1400).height(600).url()}
+              alt={title}
+              fill
+              priority
+              className="object-cover"
+              style={{ mixBlendMode: 'multiply', opacity: 0.8 }}
+            />
+          </div>
+        )}
       </div>
     </Link>
   )

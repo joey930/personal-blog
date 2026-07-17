@@ -17,52 +17,106 @@ export default async function PostPage({
   if (!post) notFound()
 
   return (
-    <article className="max-w-3xl mx-auto px-4 py-12">
-      <header className="mb-8">
-        <span className="text-xs uppercase tracking-widest mb-3 block" style={{ color: '#9ca3af' }}>
-          {post.category}
-        </span>
-        <h1 className="font-headline-en text-4xl md:text-5xl font-bold leading-tight mb-2">
-          {post.title_en}
-        </h1>
-        {post.title_ko && (
-          <h2 className="font-headline-ko text-2xl mb-4" style={{ color: '#6b7280' }}>
-            {post.title_ko}
-          </h2>
-        )}
-        <p className="text-sm" style={{ color: '#9ca3af' }}>
-          {new Date(post.published_at).toLocaleDateString('en-US', {
-            year: 'numeric', month: 'long', day: 'numeric',
-          })}
-        </p>
-      </header>
+    <article style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }}>
+      {/* Grid-texture hero */}
+      <div className="grid-texture" style={{
+        border: '1px solid var(--color-border)',
+        backgroundColor: 'var(--color-paper)',
+        padding: '48px 48px 40px',
+        marginBottom: '2px',
+      }}>
+        <span style={{
+          display: 'inline-block',
+          fontSize: '11px',
+          fontWeight: 500,
+          color: 'var(--color-blue)',
+          border: '1px solid var(--color-blue)',
+          borderRadius: '999px',
+          padding: '2px 12px',
+          marginBottom: '20px',
+          textTransform: 'capitalize',
+          letterSpacing: '0.03em',
+        }}>{post.category}</span>
 
+        <h1 style={{
+          fontSize: 'clamp(28px, 4vw, 52px)',
+          fontWeight: 700,
+          lineHeight: 1.1,
+          color: 'var(--color-blue)',
+          letterSpacing: '-0.03em',
+          margin: '0 0 20px',
+          maxWidth: '860px',
+        }}>{post.title_en}</h1>
+
+        {post.title_ko && (
+          <p style={{ fontSize: '20px', color: 'var(--color-blue)', opacity: 0.5, margin: '0 0 16px' }}>
+            {post.title_ko}
+          </p>
+        )}
+
+        <p style={{ fontSize: '12px', color: 'var(--color-blue)', opacity: 0.5 }}>
+          {new Date(post.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+      </div>
+
+      {/* Blue-tinted cover image */}
       {post.cover_image && (
-        <div className="relative w-full mb-10 overflow-hidden" style={{ aspectRatio: '16/9' }}>
+        <div style={{
+          position: 'relative',
+          aspectRatio: '21/9',
+          overflow: 'hidden',
+          backgroundColor: 'var(--color-blue)',
+          border: '1px solid var(--color-border)',
+          borderTop: 'none',
+          marginBottom: '2px',
+        }}>
           <Image
-            src={urlFor(post.cover_image).width(900).height(506).url()}
+            src={urlFor(post.cover_image).width(1100).height(471).url()}
             alt={post.title_en}
             fill
             priority
             className="object-cover"
+            style={{ mixBlendMode: 'multiply', opacity: 0.8 }}
           />
         </div>
       )}
 
-      <PostBody bodyEn={post.body_en} bodyKo={post.body_ko} />
-
-      {post.author_note && (
-        <aside className="mt-12 pl-4 italic text-sm" style={{ borderLeft: '4px solid #e5e7eb', color: '#6b7280' }}>
-          {post.author_note}
-        </aside>
-      )}
+      {/* Two-column body */}
+      <div style={{
+        border: '1px solid var(--color-border)',
+        borderTop: 'none',
+        backgroundColor: 'var(--color-paper)',
+        padding: '48px',
+      }}>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: post.author_note ? '1fr 1fr' : '1fr',
+          gap: '48px',
+        }}>
+          <PostBody bodyEn={post.body_en} bodyKo={post.body_ko} />
+          {post.author_note && (
+            <aside style={{
+              fontSize: '14px',
+              color: 'var(--color-blue)',
+              opacity: 0.7,
+              borderLeft: '1px solid var(--color-border)',
+              paddingLeft: '48px',
+              fontStyle: 'italic',
+            }}>
+              {post.author_note}
+            </aside>
+          )}
+        </div>
+      </div>
     </article>
   )
 }
 
 export async function generateStaticParams() {
   const posts = await sanityClient.fetch(allPostsQuery)
-  return posts.map((p: any) => ({ category: p.category, slug: p.slug.current }))
+  return posts
+    .filter((p: any) => p.slug?.current)
+    .map((p: any) => ({ category: p.category, slug: p.slug.current }))
 }
 
 export async function generateMetadata({

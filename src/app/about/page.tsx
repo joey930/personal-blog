@@ -9,23 +9,55 @@ export default async function AboutPage() {
   const about = await sanityClient.fetch(aboutQuery)
 
   return (
-    <main className="max-w-2xl mx-auto px-4 py-16">
-      {about?.photo && (
-        <div className="relative w-32 h-32 rounded-full overflow-hidden mb-8 mx-auto">
-          <Image
-            src={urlFor(about.photo).width(256).height(256).url()}
-            alt="Joey"
-            fill
-            className="object-cover"
-          />
+    <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }}>
+      <div className="grid-texture" style={{
+        border: '1px solid var(--color-border)',
+        backgroundColor: 'var(--color-paper)',
+        padding: '48px',
+        marginBottom: '2px',
+      }}>
+        {about?.photo && (
+          <div style={{
+            position: 'relative',
+            width: '120px',
+            height: '120px',
+            borderRadius: '50%',
+            overflow: 'hidden',
+            backgroundColor: 'var(--color-blue)',
+            marginBottom: '24px',
+          }}>
+            <Image
+              src={urlFor(about.photo).width(240).height(240).url()}
+              alt="Joey"
+              fill
+              className="object-cover"
+              style={{ mixBlendMode: 'multiply', opacity: 0.85 }}
+            />
+          </div>
+        )}
+        <h1 style={{
+          fontSize: '48px',
+          fontWeight: 700,
+          color: 'var(--color-blue)',
+          letterSpacing: '-0.03em',
+          margin: '0 0 8px',
+        }}>Joey</h1>
+      </div>
+      {about && (
+        <div style={{
+          border: '1px solid var(--color-border)',
+          borderTop: 'none',
+          backgroundColor: 'var(--color-paper)',
+          padding: '48px',
+          maxWidth: '720px',
+        }}>
+          <AboutBody bioEn={about.bio_en} bioKo={about.bio_ko} />
         </div>
       )}
-      <h1 className="font-headline-en text-3xl font-bold text-center mb-2">Joey</h1>
-      {about && <AboutBody bioEn={about.bio_en} bioKo={about.bio_ko} />}
       {!about && (
-        <p className="text-center mt-8" style={{ color: '#9ca3af' }}>
+        <div style={{ padding: '48px', textAlign: 'center', opacity: 0.4, color: 'var(--color-blue)' }}>
           About page coming soon.
-        </p>
+        </div>
       )}
     </main>
   )

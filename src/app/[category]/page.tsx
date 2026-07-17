@@ -5,10 +5,10 @@ import PostCard from '@/components/PostCard'
 
 const VALID_CATEGORIES = ['wellness', 'christianity', 'business']
 
-const categoryTitles: Record<string, { en: string; ko: string; color: string }> = {
-  wellness:     { en: 'Wellness',     ko: '웰니스',   color: 'var(--color-wellness)' },
-  christianity: { en: 'Christianity', ko: '신앙',     color: 'var(--color-christianity)' },
-  business:     { en: 'Business',     ko: '비즈니스', color: 'var(--color-business)' },
+const categoryTitles: Record<string, { en: string; ko: string }> = {
+  wellness:     { en: 'Wellness',     ko: '웰니스' },
+  christianity: { en: 'Christianity', ko: '신앙' },
+  business:     { en: 'Business',     ko: '비즈니스' },
 }
 
 export const revalidate = 60
@@ -21,25 +21,46 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
   const titles = categoryTitles[category]
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-12">
-      <header className="mb-10 pb-6" style={{ borderBottom: '2px solid', borderColor: titles.color }}>
-        <h1 className="font-headline-en text-4xl font-bold" style={{ color: 'var(--color-ink)' }}>
-          {titles.en}
-          <span className="font-headline-ko ml-3 text-2xl" style={{ color: '#9ca3af' }}>/ {titles.ko}</span>
+    <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }}>
+      <header className="grid-texture" style={{
+        border: '1px solid var(--color-border)',
+        backgroundColor: 'var(--color-paper)',
+        padding: '40px 48px',
+        marginBottom: '24px',
+      }}>
+        <span style={{
+          display: 'inline-block',
+          fontSize: '11px',
+          border: '1px solid var(--color-blue)',
+          borderRadius: '999px',
+          padding: '2px 12px',
+          marginBottom: '12px',
+          color: 'var(--color-blue)',
+          textTransform: 'capitalize',
+        }}>Category</span>
+        <h1 style={{
+          fontSize: 'clamp(28px, 4vw, 48px)',
+          fontWeight: 700,
+          color: 'var(--color-blue)',
+          letterSpacing: '-0.03em',
+          margin: 0,
+        }}>
+          {titles.en} <span style={{ opacity: 0.4, fontWeight: 400 }}>/ {titles.ko}</span>
         </h1>
       </header>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {posts.map((post: any) => (
-          <PostCard key={post._id} post={post} />
-        ))}
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '16px' }}>
+        {posts.filter((post: any) => post.slug?.current).map((post: any) => <PostCard key={post._id} post={post} />)}
       </div>
       {posts.length === 0 && (
-        <p className="text-center py-20" style={{ color: '#9ca3af' }}>No posts yet.</p>
+        <p style={{ textAlign: 'center', padding: '80px', opacity: 0.4, color: 'var(--color-blue)' }}>
+          No posts yet.
+        </p>
       )}
     </main>
   )
 }
 
 export async function generateStaticParams() {
-  return VALID_CATEGORIES.map(category => ({ category }))
+  return ['wellness', 'christianity', 'business'].map(category => ({ category }))
 }

@@ -29,32 +29,44 @@ export default function SearchPage() {
     timerRef.current = setTimeout(() => search(q), 300)
   }
 
-  const placeholder = lang === 'ko' ? '검색...' : 'Search...'
-
   return (
-    <main className="max-w-4xl mx-auto px-4 py-12">
-      <div className="relative mb-10">
+    <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }}>
+      <div className="grid-texture" style={{
+        border: '1px solid var(--color-border)',
+        backgroundColor: 'var(--color-paper)',
+        padding: '40px 48px',
+        marginBottom: '24px',
+      }}>
         <input
           type="text"
           value={query}
           onChange={handleChange}
-          placeholder={placeholder}
-          className={`w-full text-2xl pb-2 outline-none bg-transparent ${lang === 'ko' ? 'font-body-ko' : 'font-body-en'}`}
-          style={{ borderBottom: '2px solid var(--color-ink)' }}
+          placeholder={lang === 'ko' ? '검색...' : 'Search posts...'}
           autoFocus
+          style={{
+            width: '100%',
+            fontSize: '32px',
+            fontWeight: 700,
+            color: 'var(--color-blue)',
+            background: 'transparent',
+            border: 'none',
+            outline: 'none',
+            letterSpacing: '-0.02em',
+            caretColor: 'var(--color-blue)',
+          }}
         />
       </div>
 
-      {loading && <p className="text-center" style={{ color: '#9ca3af' }}>...</p>}
+      {loading && <p style={{ textAlign: 'center', color: 'var(--color-blue)', opacity: 0.4 }}>...</p>}
 
       {!loading && results.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '16px' }}>
           {results.map((post: any) => <PostCard key={post._id} post={post} />)}
         </div>
       )}
 
       {!loading && query.length >= 2 && results.length === 0 && (
-        <p className="text-center py-20" style={{ color: '#9ca3af' }}>
+        <p style={{ textAlign: 'center', padding: '80px', opacity: 0.4, color: 'var(--color-blue)' }}>
           {lang === 'ko' ? '결과 없음' : 'No results found'}
         </p>
       )}

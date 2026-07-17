@@ -4,12 +4,6 @@ import Image from 'next/image'
 import { urlFor } from '@/lib/sanity'
 import { useLanguage } from '@/hooks/useLanguage'
 
-const categoryColors: Record<string, string> = {
-  wellness:     'var(--color-wellness)',
-  christianity: 'var(--color-christianity)',
-  business:     'var(--color-business)',
-}
-
 const categoryLabels: Record<string, { en: string; ko: string }> = {
   wellness:     { en: 'Wellness',     ko: '웰니스' },
   christianity: { en: 'Christianity', ko: '신앙' },
@@ -19,7 +13,6 @@ const categoryLabels: Record<string, { en: string; ko: string }> = {
 export default function PostCard({ post }: { post: any }) {
   const { lang } = useLanguage()
   const title = lang === 'en' ? post.title_en : (post.title_ko || post.title_en)
-  const color = categoryColors[post.category]
   const label = categoryLabels[post.category]?.[lang]
   const date = new Date(post.published_at).toLocaleDateString(
     lang === 'ko' ? 'ko-KR' : 'en-US',
@@ -27,27 +20,62 @@ export default function PostCard({ post }: { post: any }) {
   )
 
   return (
-    <Link href={`/${post.category}/${post.slug.current}`} className="group block">
-      <div className="relative overflow-hidden bg-gray-100 mb-3" style={{ aspectRatio: '16/9' }}>
+    <Link href={`/${post.category}/${post.slug?.current ?? ''}`} style={{ textDecoration: 'none', display: 'block' }}>
+      <article style={{
+        border: '1px solid var(--color-border)',
+        backgroundColor: 'var(--color-paper)',
+        overflow: 'hidden',
+      }}>
+        {/* Grid texture header with category + title */}
+        <div className="grid-texture" style={{
+          padding: '32px 28px 28px',
+          borderBottom: '1px solid var(--color-border)',
+        }}>
+          {/* Category pill */}
+          <span style={{
+            display: 'inline-block',
+            fontSize: '11px',
+            fontWeight: 500,
+            color: 'var(--color-blue)',
+            border: '1px solid var(--color-blue)',
+            borderRadius: '999px',
+            padding: '2px 10px',
+            marginBottom: '14px',
+            textTransform: 'capitalize',
+            letterSpacing: '0.03em',
+          }}>
+            {label}
+          </span>
+          <h2 style={{
+            fontSize: '22px',
+            fontWeight: 700,
+            lineHeight: 1.25,
+            color: 'var(--color-blue)',
+            letterSpacing: '-0.02em',
+            margin: 0,
+          }}>
+            {title}
+          </h2>
+        </div>
+
+        {/* Cover image with blue tint */}
         {post.cover_image && (
-          <Image
-            src={urlFor(post.cover_image).width(600).height(338).url()}
-            alt={title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          <div style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden', backgroundColor: 'var(--color-blue)' }}>
+            <Image
+              src={urlFor(post.cover_image).width(600).height(338).url()}
+              alt={title}
+              fill
+              className="object-cover"
+              style={{ mixBlendMode: 'multiply', opacity: 0.85 }}
+            />
+          </div>
         )}
-        <span
-          className="absolute top-3 left-3 text-white text-xs font-bold uppercase tracking-widest px-2 py-1"
-          style={{ backgroundColor: color }}
-        >
-          {label}
-        </span>
-      </div>
-      <h3 className={`text-lg font-bold leading-snug group-hover:opacity-70 transition-opacity mb-1 ${lang === 'ko' ? 'font-headline-ko' : 'font-headline-en'}`}>
-        {title}
-      </h3>
-      <p className={`text-xs text-gray-500 ${lang === 'ko' ? 'font-body-ko' : 'font-body-en'}`}>{date}</p>
+
+        {/* Date footer */}
+        <div style={{ padding: '12px 28px', borderTop: '1px solid var(--color-border)' }}>
+          <span style={{ fontSize: '12px', color: 'var(--color-blue)', opacity: 0.6 }}>{date}</span>
+        </div>
+      </article>
     </Link>
   )
 }
