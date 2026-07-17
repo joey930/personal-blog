@@ -24,3 +24,16 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+:root {
+  --color-ink: #111111;
+  --color-paper: #ffffff;
+  --color-wellness: #2d7a4f;
+  --color-christianity: #7c3aed;
+  --color-business: #b45309;
+}
+
+.font-headline-en { font-family: var(--font-playfair), Georgia, serif; }
+.font-headline-ko { font-family: var(--font-noto-serif-kr), serif; }
+.font-body-en     { font-family: var(--font-inter), system-ui, sans-serif; }
+.font-body-ko     { font-family: var(--font-noto-sans-kr), sans-serif; }
