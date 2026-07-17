@@ -65,7 +65,7 @@ export default async function PostPage({
           position: 'relative',
           aspectRatio: '21/9',
           overflow: 'hidden',
-          backgroundColor: 'var(--color-blue)',
+          backgroundColor: '#eee',
           border: '1px solid var(--color-border)',
           borderTop: 'none',
           marginBottom: '2px',
@@ -76,7 +76,6 @@ export default async function PostPage({
             fill
             priority
             className="object-cover"
-            style={{ mixBlendMode: 'multiply', opacity: 0.8 }}
           />
         </div>
       )}

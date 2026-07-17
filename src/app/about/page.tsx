@@ -23,7 +23,7 @@ export default async function AboutPage() {
             height: '120px',
             borderRadius: '50%',
             overflow: 'hidden',
-            backgroundColor: 'var(--color-blue)',
+            backgroundColor: '#eee',
             marginBottom: '24px',
           }}>
             <Image
@@ -31,7 +31,6 @@ export default async function AboutPage() {
               alt="Joey"
               fill
               className="object-cover"
-              style={{ mixBlendMode: 'multiply', opacity: 0.85 }}
             />
           </div>
         )}

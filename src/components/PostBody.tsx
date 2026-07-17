@@ -69,13 +69,13 @@ const components = {
   types: {
     image: ({ value }: any) => (
       <figure style={{ margin: '2em 0' }}>
-        <div style={{ position: 'relative', width: '100%', backgroundColor: 'var(--color-blue)' }}>
+        <div style={{ position: 'relative', width: '100%', backgroundColor: '#eee' }}>
           <Image
             src={urlFor(value).width(900).url()}
             alt={value.alt || ''}
             width={900}
             height={0}
-            style={{ width: '100%', height: 'auto', display: 'block', mixBlendMode: 'multiply', opacity: 0.85 }}
+            style={{ width: '100%', height: 'auto', display: 'block' }}
           />
         </div>
         {value.caption && (

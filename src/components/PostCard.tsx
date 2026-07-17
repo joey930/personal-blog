@@ -60,13 +60,12 @@ export default function PostCard({ post }: { post: Post }) {
 
         {/* Cover image with blue tint */}
         {post.cover_image && (
-          <div style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden', backgroundColor: 'var(--color-blue)' }}>
+          <div style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden', backgroundColor: '#eee' }}>
             <Image
               src={urlFor(post.cover_image).width(600).height(338).url()}
               alt={title}
               fill
               className="object-cover"
-              style={{ mixBlendMode: 'multiply', opacity: 0.85 }}
             />
           </div>
         )}

@@ -49,14 +49,13 @@ export default function HeroPost({ post }: { post: Post }) {
 
         {/* Full-width blue-tinted image */}
         {post.cover_image && (
-          <div style={{ position: 'relative', aspectRatio: '21/9', overflow: 'hidden', backgroundColor: 'var(--color-blue)' }}>
+          <div style={{ position: 'relative', aspectRatio: '21/9', overflow: 'hidden', backgroundColor: '#eee' }}>
             <Image
               src={urlFor(post.cover_image).width(1400).height(600).url()}
               alt={title}
               fill
               priority
               className="object-cover"
-              style={{ mixBlendMode: 'multiply', opacity: 0.8 }}
             />
           </div>
         )}
