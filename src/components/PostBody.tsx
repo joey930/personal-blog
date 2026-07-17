@@ -1,6 +1,18 @@
 'use client'
 import { PortableText } from '@portabletext/react'
+import Image from 'next/image'
 import { useLanguage } from '@/hooks/useLanguage'
+import { urlFor } from '@/lib/sanity'
+
+function getYouTubeId(url: string) {
+  const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?/]+)/)
+  return match ? match[1] : null
+}
+
+function getVimeoId(url: string) {
+  const match = url.match(/vimeo\.com\/(\d+)/)
+  return match ? match[1] : null
+}
 
 const components = {
   block: {
@@ -53,6 +65,54 @@ const components = {
   listItem: {
     bullet: ({ children }: any) => <li style={{ marginBottom: '0.4em', lineHeight: 1.7, fontSize: '17px' }}>{children}</li>,
     number: ({ children }: any) => <li style={{ marginBottom: '0.4em', lineHeight: 1.7, fontSize: '17px' }}>{children}</li>,
+  },
+  types: {
+    image: ({ value }: any) => (
+      <figure style={{ margin: '2em 0' }}>
+        <div style={{ position: 'relative', width: '100%', backgroundColor: 'var(--color-blue)' }}>
+          <Image
+            src={urlFor(value).width(900).url()}
+            alt={value.alt || ''}
+            width={900}
+            height={0}
+            style={{ width: '100%', height: 'auto', display: 'block', mixBlendMode: 'multiply', opacity: 0.85 }}
+          />
+        </div>
+        {value.caption && (
+          <figcaption style={{ fontSize: '13px', color: 'var(--color-blue)', opacity: 0.5, marginTop: '8px', fontStyle: 'italic' }}>
+            {value.caption}
+          </figcaption>
+        )}
+      </figure>
+    ),
+    videoEmbed: ({ value }: any) => {
+      if (!value?.url) return null
+      const ytId = getYouTubeId(value.url)
+      const vimeoId = getVimeoId(value.url)
+      const src = ytId
+        ? `https://www.youtube.com/embed/${ytId}`
+        : vimeoId
+        ? `https://player.vimeo.com/video/${vimeoId}`
+        : null
+      if (!src) return null
+      return (
+        <figure style={{ margin: '2em 0' }}>
+          <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', border: '1px solid var(--color-border)' }}>
+            <iframe
+              src={src}
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+          {value.caption && (
+            <figcaption style={{ fontSize: '13px', color: 'var(--color-blue)', opacity: 0.5, marginTop: '8px', fontStyle: 'italic' }}>
+              {value.caption}
+            </figcaption>
+          )}
+        </figure>
+      )
+    },
   },
 }
 
