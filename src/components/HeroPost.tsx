@@ -19,7 +19,7 @@ export default function HeroPost({ post }: { post: Post }) {
     <Link href={`/${slug}/${post.slug.current}`} style={{ textDecoration: 'none', display: 'block' }}>
       <div style={{ border: '1px solid var(--color-border)', backgroundColor: 'var(--color-paper)', marginBottom: '2px', overflowX: 'hidden' }}>
         {/* Grid-texture intro section */}
-        <div className="grid-texture hero-padding" style={{ padding: '48px 48px 40px' }}>
+        <div className="grid-texture hero-padding" style={{ padding: '40px 40px 36px' }}>
           <span style={{
             display: 'inline-block',
             fontSize: '11px',
@@ -35,12 +35,12 @@ export default function HeroPost({ post }: { post: Post }) {
             {label}
           </span>
           <h1 style={{
-            fontSize: 'clamp(28px, 4vw, 52px)',
-            fontWeight: 700,
+            fontSize: 'clamp(24px, 4vw, 44px)',
+            fontWeight: 800,
             lineHeight: 1.1,
             color: 'var(--color-blue)',
             letterSpacing: '-0.03em',
-            margin: '0 0 20px',
+            margin: '0 0 16px',
             maxWidth: '780px',
           }}>
             {title}

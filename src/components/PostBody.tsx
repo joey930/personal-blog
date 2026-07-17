@@ -16,12 +16,13 @@ function getVimeoId(url: string) {
 
 const components = {
   block: {
-    normal: ({ children, index }: any) => (
+    normal: ({ children }: any) => (
       <p style={{
-        marginBottom: '1.5em',
-        lineHeight: 1.75,
+        marginBottom: '1.6em',
+        lineHeight: 1.85,
         color: 'var(--color-blue)',
-        fontSize: '17px',
+        fontSize: '18px',
+        maxWidth: '680px',
       }}>
         {children}
       </p>
@@ -122,7 +123,7 @@ export default function PostBody({ bodyEn, bodyKo }: { bodyEn: any; bodyKo: any 
   if (!body?.length) return null
 
   return (
-    <div style={{ color: 'var(--color-blue)' }}>
+    <div style={{ color: 'var(--color-blue)', maxWidth: '680px' }}>
       <style>{`
         .drop-cap-body > div:first-child p:first-child::first-letter {
           font-size: 4.5em;

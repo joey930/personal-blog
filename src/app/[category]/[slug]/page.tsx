@@ -1,4 +1,13 @@
 import { notFound } from 'next/navigation'
+
+function estimateReadingTime(body: any[]): number {
+  if (!body?.length) return 1
+  const text = body
+    .filter((b: any) => b._type === 'block')
+    .flatMap((b: any) => b.children?.map((c: any) => c.text || '') || [])
+    .join(' ')
+  return Math.max(1, Math.ceil(text.split(/\s+/).length / 200))
+}
 import Image from 'next/image'
 import { sanityClient, urlFor } from '@/lib/sanity'
 import { postBySlugQuery, allPostsQuery } from '@/lib/queries'
@@ -16,47 +25,53 @@ export default async function PostPage({
   const post = await sanityClient.fetch(postBySlugQuery, { slug })
   if (!post) notFound()
 
+  const readingTime = estimateReadingTime(post.body_en)
+
   return (
     <article style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }} className="page-padding">
-      {/* Grid-texture hero */}
+      {/* Hero */}
       <div className="grid-texture hero-padding" style={{
         border: '1px solid var(--color-border)',
         backgroundColor: 'var(--color-paper)',
         padding: '48px 48px 40px',
         marginBottom: '2px',
       }}>
-        <span style={{
-          display: 'inline-block',
-          fontSize: '11px',
-          fontWeight: 500,
-          color: 'var(--color-blue)',
-          border: '1px solid var(--color-blue)',
-          borderRadius: '999px',
-          padding: '2px 12px',
-          marginBottom: '20px',
-          textTransform: 'capitalize',
-          letterSpacing: '0.03em',
-        }}>{post.category?.name_en}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
+          <span style={{
+            fontSize: '11px',
+            fontWeight: 600,
+            color: 'var(--color-blue)',
+            border: '1px solid var(--color-blue)',
+            borderRadius: '999px',
+            padding: '2px 12px',
+            textTransform: 'capitalize',
+            letterSpacing: '0.04em',
+          }}>{post.category?.name_en}</span>
+          <span style={{ fontSize: '11px', color: 'var(--color-blue)', opacity: 0.4 }}>·</span>
+          <span style={{ fontSize: '11px', color: 'var(--color-blue)', opacity: 0.4 }}>
+            {new Date(post.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </span>
+          <span style={{ fontSize: '11px', color: 'var(--color-blue)', opacity: 0.4 }}>·</span>
+          <span style={{ fontSize: '11px', color: 'var(--color-blue)', opacity: 0.4 }}>
+            {readingTime} min read
+          </span>
+        </div>
 
         <h1 style={{
           fontSize: 'clamp(28px, 4vw, 52px)',
-          fontWeight: 700,
+          fontWeight: 800,
           lineHeight: 1.1,
           color: 'var(--color-blue)',
           letterSpacing: '-0.03em',
-          margin: '0 0 20px',
+          margin: '0 0 16px',
           maxWidth: '860px',
         }}>{post.title_en}</h1>
 
         {post.title_ko && (
-          <p style={{ fontSize: '20px', color: 'var(--color-blue)', opacity: 0.5, margin: '0 0 16px' }}>
+          <p style={{ fontSize: '18px', color: 'var(--color-blue)', opacity: 0.4, margin: 0, fontStyle: 'italic' }}>
             {post.title_ko}
           </p>
         )}
-
-        <p style={{ fontSize: '12px', color: 'var(--color-blue)', opacity: 0.5 }}>
-          {new Date(post.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-        </p>
       </div>
 
       {/* Blue-tinted cover image */}

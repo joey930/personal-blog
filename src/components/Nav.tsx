@@ -78,10 +78,14 @@ export default function Nav({ categories }: { categories: Category[] }) {
                 padding: '3px 10px',
                 background: 'transparent',
                 cursor: 'pointer',
-                whiteSpace: 'nowrap',
+                letterSpacing: '0.05em',
+                fontWeight: 500,
               }}
+              aria-label="Toggle language"
             >
-              {lang === 'en' ? '한국어' : 'English'}
+              <span style={{ fontWeight: lang === 'en' ? 700 : 400, opacity: lang === 'en' ? 1 : 0.4 }}>EN</span>
+              <span style={{ margin: '0 3px', opacity: 0.3 }}>·</span>
+              <span style={{ fontWeight: lang === 'ko' ? 700 : 400, opacity: lang === 'ko' ? 1 : 0.4 }}>KO</span>
             </button>
             {/* Hamburger — mobile only */}
             <button

@@ -59,6 +59,32 @@ img {
   }
 }
 
+/* Reading-optimized body text */
+.prose-body {
+  font-size: 18px;
+  line-height: 1.85;
+  color: var(--color-blue);
+  max-width: 680px;
+}
+
+/* Thin top accent bar */
+body::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: var(--color-blue);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+/* Push sticky nav down by 3px to sit below the bar */
+header {
+  top: 3px !important;
+}
+
 /* Mobile */
 @media (max-width: 640px) {
   .card-grid {

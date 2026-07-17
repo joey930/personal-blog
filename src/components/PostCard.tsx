@@ -47,11 +47,11 @@ export default function PostCard({ post }: { post: Post }) {
             {label}
           </span>
           <h2 style={{
-            fontSize: '22px',
-            fontWeight: 700,
-            lineHeight: 1.25,
+            fontSize: '20px',
+            fontWeight: 800,
+            lineHeight: 1.2,
             color: 'var(--color-blue)',
-            letterSpacing: '-0.02em',
+            letterSpacing: '-0.025em',
             margin: 0,
           }}>
             {title}

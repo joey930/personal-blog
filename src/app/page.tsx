@@ -15,11 +15,25 @@ export default async function HomePage() {
   return (
     <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }} className="page-padding">
       {/* Masthead */}
-      <div style={{ marginBottom: '24px', paddingBottom: '24px', borderBottom: '1px solid var(--color-border)' }}>
-        <h1 style={{ fontSize: 'clamp(28px, 5vw, 52px)', fontWeight: 700, letterSpacing: '-0.03em', color: 'var(--color-blue)', margin: '0 0 6px' }}>
-          The Pilgrim's Venture
+      <div style={{ marginBottom: '32px', paddingBottom: '28px', borderBottom: '2px solid var(--color-blue)' }}>
+        <h1 style={{
+          fontSize: 'clamp(32px, 5vw, 64px)',
+          fontWeight: 800,
+          letterSpacing: '-0.04em',
+          color: 'var(--color-blue)',
+          margin: '0 0 8px',
+          lineHeight: 1,
+        }}>
+          The Pilgrim&apos;s Venture
         </h1>
-        <p style={{ fontSize: '15px', fontStyle: 'italic', color: 'var(--color-blue)', opacity: 0.55, margin: 0 }}>
+        <p style={{
+          fontSize: 'clamp(13px, 1.5vw, 16px)',
+          fontStyle: 'italic',
+          color: 'var(--color-blue)',
+          opacity: 0.5,
+          margin: 0,
+          letterSpacing: '0.01em',
+        }}>
           faith, work and the long walk home
         </p>
       </div>

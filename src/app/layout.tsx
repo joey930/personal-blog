@@ -3,6 +3,7 @@ import { Playfair_Display, Inter, Noto_Serif_KR, Noto_Sans_KR } from 'next/font/
 import './globals.css'
 import { LanguageProvider } from '@/context/LanguageContext'
 import Nav from '@/components/Nav'
+import Footer from '@/components/Footer'
 import { sanityClient } from '@/lib/sanity'
 import { allCategoriesQuery } from '@/lib/queries'
 
@@ -25,6 +26,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <LanguageProvider>
           <Nav categories={categories} />
           {children}
+          <Footer categories={categories} />
         </LanguageProvider>
       </body>
     </html>
