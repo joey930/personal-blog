@@ -12,8 +12,8 @@ const notoSerifKR = Noto_Serif_KR({ subsets: ['latin'], weight: ['400', '700'], 
 const notoSansKR = Noto_Sans_KR({ subsets: ['latin'], weight: ['400', '500', '700'], variable: '--font-noto-sans-kr', display: 'swap' })
 
 export const metadata: Metadata = {
-  title: "Joey's Blog",
-  description: 'Wellness, Christianity, Business',
+  title: "The Pilgrim's Venture",
+  description: 'faith, work and the long walk home',
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

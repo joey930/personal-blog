@@ -36,7 +36,7 @@ export default function Nav({ categories }: { categories: Category[] }) {
             letterSpacing: '-0.02em',
             flexShrink: 0,
           }}>
-            ✦ John 832
+            ✦ The Pilgrim's Venture
           </Link>
 
           {/* Desktop nav */}
