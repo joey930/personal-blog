@@ -30,8 +30,8 @@ export default function SearchPage() {
   }
 
   return (
-    <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }}>
-      <div className="grid-texture" style={{
+    <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }} className="page-padding">
+      <div className="grid-texture hero-padding" style={{
         border: '1px solid var(--color-border)',
         backgroundColor: 'var(--color-paper)',
         padding: '40px 48px',
@@ -60,7 +60,7 @@ export default function SearchPage() {
       {loading && <p style={{ textAlign: 'center', color: 'var(--color-blue)', opacity: 0.4 }}>...</p>}
 
       {!loading && results.length > 0 && (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '16px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 340px), 1fr))', gap: '16px' }} className="card-grid">
           {results.map((post: any) => <PostCard key={post._id} post={post} />)}
         </div>
       )}

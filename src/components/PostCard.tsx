@@ -27,8 +27,8 @@ export default function PostCard({ post }: { post: Post }) {
         overflow: 'hidden',
       }}>
         {/* Grid texture header with category + title */}
-        <div className="grid-texture" style={{
-          padding: '32px 28px 28px',
+        <div className="grid-texture hero-padding" style={{
+          padding: '28px 24px 24px',
           borderBottom: '1px solid var(--color-border)',
         }}>
           {/* Category pill */}

@@ -16,8 +16,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
   const posts = await sanityClient.fetch(postsByCategorySlugQuery, { slug })
 
   return (
-    <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }}>
-      <header className="grid-texture" style={{
+    <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }} className="page-padding">
+      <header className="grid-texture hero-padding" style={{
         border: '1px solid var(--color-border)',
         backgroundColor: 'var(--color-paper)',
         padding: '40px 48px',
@@ -44,7 +44,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         </h1>
       </header>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '16px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 340px), 1fr))', gap: '16px' }} className="card-grid">
         {posts.map((post: any) => <PostCard key={post._id} post={post} />)}
       </div>
       {posts.length === 0 && (

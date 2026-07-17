@@ -17,9 +17,9 @@ export default async function PostPage({
   if (!post) notFound()
 
   return (
-    <article style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }}>
+    <article style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }} className="page-padding">
       {/* Grid-texture hero */}
-      <div className="grid-texture" style={{
+      <div className="grid-texture hero-padding" style={{
         border: '1px solid var(--color-border)',
         backgroundColor: 'var(--color-paper)',
         padding: '48px 48px 40px',
@@ -88,7 +88,7 @@ export default async function PostPage({
         backgroundColor: 'var(--color-paper)',
         padding: '48px',
       }}>
-        <div style={{
+        <div className="post-body-grid" style={{
           display: 'grid',
           gridTemplateColumns: post.author_note ? '1fr 1fr' : '1fr',
           gap: '48px',

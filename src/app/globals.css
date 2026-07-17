@@ -26,3 +26,38 @@ body {
   background-image: radial-gradient(circle, rgba(52,50,202,0.15) 1px, transparent 1px);
   background-size: 18px 18px;
 }
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100svh;
+}
+
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Mobile responsive grid */
+@media (max-width: 640px) {
+  .card-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .hero-padding {
+    padding: 28px 20px !important;
+  }
+  .page-padding {
+    padding: 16px 16px !important;
+  }
+  .post-body-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

@@ -17,9 +17,9 @@ export default function HeroPost({ post }: { post: Post }) {
 
   return (
     <Link href={`/${slug}/${post.slug.current}`} style={{ textDecoration: 'none', display: 'block' }}>
-      <div style={{ border: '1px solid var(--color-border)', backgroundColor: 'var(--color-paper)', marginBottom: '2px' }}>
+      <div style={{ border: '1px solid var(--color-border)', backgroundColor: 'var(--color-paper)', marginBottom: '2px', overflowX: 'hidden' }}>
         {/* Grid-texture intro section */}
-        <div className="grid-texture" style={{ padding: '48px 48px 40px' }}>
+        <div className="grid-texture hero-padding" style={{ padding: '48px 48px 40px' }}>
           <span style={{
             display: 'inline-block',
             fontSize: '11px',
