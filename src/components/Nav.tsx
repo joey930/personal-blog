@@ -36,7 +36,7 @@ export default function Nav({ categories }: { categories: Category[] }) {
             letterSpacing: '-0.02em',
             flexShrink: 0,
           }}>
-            ✦ {lang === 'en' ? 'Joey' : '조이'}
+            ✦ John 832
           </Link>
 
           {/* Desktop nav */}
