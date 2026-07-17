@@ -3,6 +3,8 @@ import { Playfair_Display, Inter, Noto_Serif_KR, Noto_Sans_KR } from 'next/font/
 import './globals.css'
 import { LanguageProvider } from '@/context/LanguageContext'
 import Nav from '@/components/Nav'
+import { sanityClient } from '@/lib/sanity'
+import { allCategoriesQuery } from '@/lib/queries'
 
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' })
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
@@ -14,12 +16,14 @@ export const metadata: Metadata = {
   description: 'Wellness, Christianity, Business',
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const categories = await sanityClient.fetch(allCategoriesQuery).catch(() => [])
+
   return (
     <html lang="en">
       <body className={`${playfair.variable} ${inter.variable} ${notoSerifKR.variable} ${notoSansKR.variable}`}>
         <LanguageProvider>
-          <Nav />
+          <Nav categories={categories} />
           {children}
         </LanguageProvider>
       </body>

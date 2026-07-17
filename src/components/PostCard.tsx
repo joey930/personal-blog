@@ -3,24 +3,24 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { urlFor } from '@/lib/sanity'
 import { useLanguage } from '@/hooks/useLanguage'
+import type { Post } from '@/lib/types'
 
-const categoryLabels: Record<string, { en: string; ko: string }> = {
-  wellness:     { en: 'Wellness',     ko: '웰니스' },
-  christianity: { en: 'Christianity', ko: '신앙' },
-  business:     { en: 'Business',     ko: '비즈니스' },
-}
-
-export default function PostCard({ post }: { post: any }) {
+export default function PostCard({ post }: { post: Post }) {
   const { lang } = useLanguage()
   const title = lang === 'en' ? post.title_en : (post.title_ko || post.title_en)
-  const label = categoryLabels[post.category]?.[lang]
+  const label = lang === 'en'
+    ? post.category?.name_en
+    : (post.category?.name_ko || post.category?.name_en)
+  const slug = post.category?.slug
   const date = new Date(post.published_at).toLocaleDateString(
     lang === 'ko' ? 'ko-KR' : 'en-US',
     { year: 'numeric', month: 'long', day: 'numeric' }
   )
 
+  if (!slug || !post.slug?.current) return null
+
   return (
-    <Link href={`/${post.category}/${post.slug?.current ?? ''}`} style={{ textDecoration: 'none', display: 'block' }}>
+    <Link href={`/${slug}/${post.slug.current}`} style={{ textDecoration: 'none', display: 'block' }}>
       <article style={{
         border: '1px solid var(--color-border)',
         backgroundColor: 'var(--color-paper)',

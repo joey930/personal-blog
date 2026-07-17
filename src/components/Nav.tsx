@@ -1,8 +1,10 @@
 'use client'
 import Link from 'next/link'
 import { useLanguage } from '@/hooks/useLanguage'
+import type { Category } from '@/lib/types'
+import NavCategories from './NavCategories'
 
-export default function Nav() {
+export default function Nav({ categories }: { categories: Category[] }) {
   const { lang, setLang } = useLanguage()
 
   return (
@@ -38,21 +40,10 @@ export default function Nav() {
 
         {/* Nav links */}
         <nav style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
-          {[
-            { href: '/wellness',     en: 'Wellness',     ko: '웰니스' },
-            { href: '/christianity', en: 'Christianity', ko: '신앙' },
-            { href: '/business',     en: 'Business',     ko: '비즈니스' },
-            { href: '/about',        en: 'About',        ko: '소개' },
-          ].map(link => (
-            <Link key={link.href} href={link.href} style={{
-              fontSize: '14px',
-              color: 'var(--color-blue)',
-              textDecoration: 'none',
-              opacity: 0.7,
-            }}>
-              {lang === 'en' ? link.en : link.ko}
-            </Link>
-          ))}
+          <NavCategories categories={categories} />
+          <Link href="/about" style={{ fontSize: '14px', color: 'var(--color-blue)', textDecoration: 'none', opacity: 0.7 }}>
+            {lang === 'en' ? 'About' : '소개'}
+          </Link>
         </nav>
 
         {/* Right side */}

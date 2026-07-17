@@ -5,12 +5,14 @@ export async function GET() {
   const posts = await sanityClient.fetch(allPostsQuery)
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://joeyblog.com'
 
-  const items = posts.map((post: any) => `
+  const items = posts
+    .filter((post: any) => post.category?.slug && post.slug?.current)
+    .map((post: any) => `
     <item>
       <title><![CDATA[${post.title_en}${post.title_ko ? ' / ' + post.title_ko : ''}]]></title>
-      <link>${baseUrl}/${post.category}/${post.slug.current}</link>
+      <link>${baseUrl}/${post.category.slug}/${post.slug.current}</link>
       <pubDate>${new Date(post.published_at).toUTCString()}</pubDate>
-      <guid>${baseUrl}/${post.category}/${post.slug.current}</guid>
+      <guid>${baseUrl}/${post.category.slug}/${post.slug.current}</guid>
     </item>`).join('')
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

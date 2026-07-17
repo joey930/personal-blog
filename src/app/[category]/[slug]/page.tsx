@@ -36,7 +36,7 @@ export default async function PostPage({
           marginBottom: '20px',
           textTransform: 'capitalize',
           letterSpacing: '0.03em',
-        }}>{post.category}</span>
+        }}>{post.category?.name_en}</span>
 
         <h1 style={{
           fontSize: 'clamp(28px, 4vw, 52px)',
@@ -115,8 +115,8 @@ export default async function PostPage({
 export async function generateStaticParams() {
   const posts = await sanityClient.fetch(allPostsQuery)
   return posts
-    .filter((p: any) => p.slug?.current)
-    .map((p: any) => ({ category: p.category, slug: p.slug.current }))
+    .filter((p: any) => p.slug?.current && p.category?.slug)
+    .map((p: any) => ({ category: p.category.slug, slug: p.slug.current }))
 }
 
 export async function generateMetadata({

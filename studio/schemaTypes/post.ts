@@ -11,8 +11,8 @@ export const postSchema = defineType({
     defineField({
       name: 'category',
       title: 'Category',
-      type: 'string',
-      options: { list: ['wellness', 'christianity', 'business'], layout: 'radio' },
+      type: 'reference',
+      to: [{ type: 'category' }],
       validation: r => r.required(),
     }),
     defineField({ name: 'cover_image', title: 'Cover Image', type: 'image', options: { hotspot: true } }),
@@ -22,7 +22,7 @@ export const postSchema = defineType({
     defineField({ name: 'published_at', title: 'Published At', type: 'datetime', initialValue: () => new Date().toISOString() }),
   ],
   preview: {
-    select: { title: 'title_en', category: 'category', media: 'cover_image' },
+    select: { title: 'title_en', category: 'category.name_en', media: 'cover_image' },
     prepare: ({ title, category, media }: any) => ({ title, subtitle: category, media }),
   },
 })
