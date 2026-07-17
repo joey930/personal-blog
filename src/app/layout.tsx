@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Playfair_Display, Inter, Noto_Serif_KR, Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/context/LanguageContext'
+import Nav from '@/components/Nav'
 
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' })
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className={`${playfair.variable} ${inter.variable} ${notoSerifKR.variable} ${notoSansKR.variable}`}>
         <LanguageProvider>
+          <Nav />
           {children}
         </LanguageProvider>
       </body>
