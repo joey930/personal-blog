@@ -30,32 +30,26 @@ export default async function PostPage({
   return (
     <article style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }} className="page-padding">
       {/* Hero */}
-      <div className="grid-texture hero-padding" style={{
-        border: '1px solid var(--color-border)',
+      <div className="hero-padding" style={{
         backgroundColor: 'var(--color-paper)',
-        padding: '48px 48px 40px',
-        marginBottom: '2px',
+        padding: '48px 48px 36px',
+        marginBottom: '3px',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
-          <span style={{
-            fontSize: '11px',
-            fontWeight: 600,
-            color: 'var(--color-blue)',
-            border: '1px solid var(--color-blue)',
-            borderRadius: '999px',
-            padding: '2px 12px',
-            textTransform: 'capitalize',
-            letterSpacing: '0.04em',
-          }}>{post.category?.name_en}</span>
-          <span style={{ fontSize: '11px', color: 'var(--color-blue)', opacity: 0.4 }}>·</span>
-          <span style={{ fontSize: '11px', color: 'var(--color-blue)', opacity: 0.4 }}>
-            {new Date(post.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-          </span>
-          <span style={{ fontSize: '11px', color: 'var(--color-blue)', opacity: 0.4 }}>·</span>
-          <span style={{ fontSize: '11px', color: 'var(--color-blue)', opacity: 0.4 }}>
-            {readingTime} min read
-          </span>
-        </div>
+        <p style={{
+          fontSize: '11px',
+          fontWeight: 600,
+          color: 'var(--color-blue)',
+          opacity: 0.45,
+          textTransform: 'uppercase',
+          letterSpacing: '0.1em',
+          margin: '0 0 16px',
+        }}>
+          {post.category?.name_en}
+          <span style={{ margin: '0 8px', opacity: 0.5 }}>·</span>
+          {new Date(post.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          <span style={{ margin: '0 8px', opacity: 0.5 }}>·</span>
+          {readingTime} min read
+        </p>
 
         <h1 style={{
           fontSize: 'clamp(28px, 4vw, 52px)',
@@ -63,27 +57,25 @@ export default async function PostPage({
           lineHeight: 1.1,
           color: 'var(--color-blue)',
           letterSpacing: '-0.03em',
-          margin: '0 0 16px',
+          margin: '0 0 14px',
           maxWidth: '860px',
         }}>{post.title_en}</h1>
 
         {post.title_ko && (
-          <p style={{ fontSize: '18px', color: 'var(--color-blue)', opacity: 0.4, margin: 0, fontStyle: 'italic' }}>
+          <p style={{ fontSize: '17px', color: 'var(--color-blue)', opacity: 0.35, margin: 0, fontStyle: 'italic' }}>
             {post.title_ko}
           </p>
         )}
       </div>
 
-      {/* Blue-tinted cover image */}
+      {/* Cover image */}
       {post.cover_image && (
         <div style={{
           position: 'relative',
           aspectRatio: '21/9',
           overflow: 'hidden',
-          backgroundColor: '#eee',
-          border: '1px solid var(--color-border)',
-          borderTop: 'none',
-          marginBottom: '2px',
+          backgroundColor: '#ddd',
+          marginBottom: '3px',
         }}>
           <Image
             src={urlFor(post.cover_image).width(1100).height(471).url()}
@@ -95,10 +87,8 @@ export default async function PostPage({
         </div>
       )}
 
-      {/* Two-column body */}
+      {/* Body */}
       <div className="post-body-padding" style={{
-        border: '1px solid var(--color-border)',
-        borderTop: 'none',
         backgroundColor: 'var(--color-paper)',
         padding: '48px',
       }}>
@@ -112,10 +102,10 @@ export default async function PostPage({
             <aside style={{
               fontSize: '14px',
               color: 'var(--color-blue)',
-              opacity: 0.7,
-              borderLeft: '1px solid var(--color-border)',
+              opacity: 0.6,
               paddingLeft: '48px',
               fontStyle: 'italic',
+              borderLeft: '2px solid var(--color-bg)',
             }}>
               {post.author_note}
             </aside>

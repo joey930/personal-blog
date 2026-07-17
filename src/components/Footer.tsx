@@ -1,9 +1,8 @@
 export default function Footer({ categories }: { categories: { _id: string; name_en: string; name_ko?: string; slug: string }[] }) {
   return (
     <footer style={{
-      borderTop: '1px solid var(--color-border)',
       backgroundColor: 'var(--color-paper)',
-      marginTop: '80px',
+      marginTop: '60px',
     }}>
       <div style={{
         maxWidth: '1100px',

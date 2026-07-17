@@ -17,39 +17,36 @@ export default function HeroPost({ post }: { post: Post }) {
 
   return (
     <Link href={`/${slug}/${post.slug.current}`} style={{ textDecoration: 'none', display: 'block' }}>
-      <div style={{ border: '1px solid var(--color-border)', backgroundColor: 'var(--color-paper)', marginBottom: '2px', overflowX: 'hidden' }}>
-        {/* Grid-texture intro section */}
-        <div className="grid-texture hero-padding" style={{ padding: '40px 40px 36px' }}>
-          <span style={{
-            display: 'inline-block',
+      <div style={{ backgroundColor: 'var(--color-paper)', overflow: 'hidden' }}>
+        {/* Text section */}
+        <div className="hero-padding" style={{ padding: '36px 40px 28px' }}>
+          <p style={{
             fontSize: '11px',
-            fontWeight: 500,
+            fontWeight: 600,
             color: 'var(--color-blue)',
-            border: '1px solid var(--color-blue)',
-            borderRadius: '999px',
-            padding: '2px 12px',
-            marginBottom: '20px',
-            textTransform: 'capitalize',
-            letterSpacing: '0.03em',
+            opacity: 0.45,
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            margin: '0 0 14px',
           }}>
             {label}
-          </span>
-          <h1 style={{
+          </p>
+          <h2 style={{
             fontSize: 'clamp(24px, 4vw, 44px)',
             fontWeight: 800,
             lineHeight: 1.1,
             color: 'var(--color-blue)',
             letterSpacing: '-0.03em',
-            margin: '0 0 16px',
+            margin: 0,
             maxWidth: '780px',
           }}>
             {title}
-          </h1>
+          </h2>
         </div>
 
-        {/* Full-width blue-tinted image */}
+        {/* Image */}
         {post.cover_image && (
-          <div style={{ position: 'relative', aspectRatio: '21/9', overflow: 'hidden', backgroundColor: '#eee' }}>
+          <div style={{ position: 'relative', aspectRatio: '16/7', overflow: 'hidden', backgroundColor: '#ddd' }}>
             <Image
               src={urlFor(post.cover_image).width(1400).height(600).url()}
               alt={title}

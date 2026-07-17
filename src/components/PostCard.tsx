@@ -14,53 +14,17 @@ export default function PostCard({ post }: { post: Post }) {
   const slug = post.category?.slug
   const date = new Date(post.published_at).toLocaleDateString(
     lang === 'ko' ? 'ko-KR' : 'en-US',
-    { year: 'numeric', month: 'long', day: 'numeric' }
+    { year: 'numeric', month: 'short', day: 'numeric' }
   )
 
   if (!slug || !post.slug?.current) return null
 
   return (
     <Link href={`/${slug}/${post.slug.current}`} style={{ textDecoration: 'none', display: 'block' }}>
-      <article style={{
-        border: '1px solid var(--color-border)',
-        backgroundColor: 'var(--color-paper)',
-        overflow: 'hidden',
-      }}>
-        {/* Grid texture header with category + title */}
-        <div className="grid-texture hero-padding" style={{
-          padding: '28px 24px 24px',
-          borderBottom: '1px solid var(--color-border)',
-        }}>
-          {/* Category pill */}
-          <span style={{
-            display: 'inline-block',
-            fontSize: '11px',
-            fontWeight: 500,
-            color: 'var(--color-blue)',
-            border: '1px solid var(--color-blue)',
-            borderRadius: '999px',
-            padding: '2px 10px',
-            marginBottom: '14px',
-            textTransform: 'capitalize',
-            letterSpacing: '0.03em',
-          }}>
-            {label}
-          </span>
-          <h2 style={{
-            fontSize: '20px',
-            fontWeight: 800,
-            lineHeight: 1.2,
-            color: 'var(--color-blue)',
-            letterSpacing: '-0.025em',
-            margin: 0,
-          }}>
-            {title}
-          </h2>
-        </div>
-
-        {/* Cover image with blue tint */}
+      <article style={{ backgroundColor: 'var(--color-paper)', overflow: 'hidden' }}>
+        {/* Image */}
         {post.cover_image && (
-          <div style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden', backgroundColor: '#eee' }}>
+          <div style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden', backgroundColor: '#ddd' }}>
             <Image
               src={urlFor(post.cover_image).width(600).height(338).url()}
               alt={title}
@@ -70,9 +34,30 @@ export default function PostCard({ post }: { post: Post }) {
           </div>
         )}
 
-        {/* Date footer */}
-        <div className="card-footer-padding" style={{ padding: '12px 24px', borderTop: '1px solid var(--color-border)' }}>
-          <span style={{ fontSize: '12px', color: 'var(--color-blue)', opacity: 0.6 }}>{date}</span>
+        {/* Text */}
+        <div className="hero-padding" style={{ padding: '20px 24px 22px' }}>
+          <p style={{
+            fontSize: '11px',
+            fontWeight: 600,
+            color: 'var(--color-blue)',
+            opacity: 0.45,
+            textTransform: 'uppercase',
+            letterSpacing: '0.1em',
+            margin: '0 0 8px',
+          }}>
+            {label}
+          </p>
+          <h2 style={{
+            fontSize: '18px',
+            fontWeight: 800,
+            lineHeight: 1.25,
+            color: 'var(--color-blue)',
+            letterSpacing: '-0.02em',
+            margin: '0 0 10px',
+          }}>
+            {title}
+          </h2>
+          <p style={{ fontSize: '12px', color: 'var(--color-blue)', opacity: 0.4, margin: 0 }}>{date}</p>
         </div>
       </article>
     </Link>

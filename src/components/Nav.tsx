@@ -12,11 +12,11 @@ export default function Nav({ categories }: { categories: Category[] }) {
     <>
       <header style={{
         backgroundColor: 'var(--color-paper)',
-        borderBottom: '1px solid var(--color-border)',
         position: 'sticky',
         top: 0,
         zIndex: 50,
         width: '100%',
+        boxShadow: '0 1px 0 rgba(52,50,202,0.07)',
       }}>
         <div style={{
           maxWidth: '1200px',
