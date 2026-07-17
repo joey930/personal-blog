@@ -72,7 +72,7 @@ export default function PostCard({ post }: { post: Post }) {
         )}
 
         {/* Date footer */}
-        <div style={{ padding: '12px 28px', borderTop: '1px solid var(--color-border)' }}>
+        <div className="card-footer-padding" style={{ padding: '12px 24px', borderTop: '1px solid var(--color-border)' }}>
           <span style={{ fontSize: '12px', color: 'var(--color-blue)', opacity: 0.6 }}>{date}</span>
         </div>
       </article>

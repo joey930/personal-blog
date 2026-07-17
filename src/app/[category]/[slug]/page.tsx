@@ -82,7 +82,7 @@ export default async function PostPage({
       )}
 
       {/* Two-column body */}
-      <div style={{
+      <div className="post-body-padding" style={{
         border: '1px solid var(--color-border)',
         borderTop: 'none',
         backgroundColor: 'var(--color-paper)',
