@@ -56,7 +56,7 @@ export default async function PostPage({
 
         {post.title_ko && (
           <p style={{
-            fontFamily: 'var(--font-fraunces)',
+            fontFamily: 'var(--font-noto-serif-kr), serif',
             fontSize: '18px',
             color: 'var(--color-muted)',
             margin: 0,
