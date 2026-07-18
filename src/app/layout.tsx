@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Playfair_Display, Inter, Noto_Serif_KR, Noto_Sans_KR } from 'next/font/google'
+import { Fraunces, Plus_Jakarta_Sans, Noto_Serif_KR, Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/context/LanguageContext'
 import Nav from '@/components/Nav'
@@ -7,10 +7,35 @@ import Footer from '@/components/Footer'
 import { sanityClient } from '@/lib/sanity'
 import { allCategoriesQuery } from '@/lib/queries'
 
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap' })
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
-const notoSerifKR = Noto_Serif_KR({ subsets: ['latin'], weight: ['400', '700'], variable: '--font-noto-serif-kr', display: 'swap' })
-const notoSansKR = Noto_Sans_KR({ subsets: ['latin'], weight: ['400', '500', '700'], variable: '--font-noto-sans-kr', display: 'swap' })
+// Fraunces — optical-size variable serif, the headline font of 2024-2026
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  variable: '--font-fraunces',
+  display: 'swap',
+  axes: ['opsz', 'WONK'],
+})
+
+// Plus Jakarta Sans — modern, clean, widely used in contemporary design
+const jakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-jakarta',
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+})
+
+const notoSerifKR = Noto_Serif_KR({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-noto-serif-kr',
+  display: 'swap',
+})
+
+const notoSansKR = Noto_Sans_KR({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-noto-sans-kr',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: "The Pilgrim's Venture",
@@ -22,7 +47,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="en">
-      <body className={`${playfair.variable} ${inter.variable} ${notoSerifKR.variable} ${notoSansKR.variable}`}>
+      <body className={`${fraunces.variable} ${jakartaSans.variable} ${notoSerifKR.variable} ${notoSansKR.variable}`}>
         <LanguageProvider>
           <Nav categories={categories} />
           {children}

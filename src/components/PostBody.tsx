@@ -22,7 +22,7 @@ const components = {
         lineHeight: 1.85,
         color: 'var(--color-text)',
         fontSize: '18px',
-        maxWidth: '680px',
+        
         fontFamily: 'var(--font-jakarta)',
       }}>
         {children}
@@ -127,7 +127,7 @@ export default function PostBody({ bodyEn, bodyKo }: { bodyEn: any; bodyKo: any 
   if (!body?.length) return null
 
   return (
-    <div style={{ color: 'var(--color-text)', maxWidth: '680px' }}>
+    <div style={{ color: 'var(--color-text)', }}>
       <style>{`
         .drop-cap-body > div:first-child p:first-child::first-letter {
           font-size: 4.5em;

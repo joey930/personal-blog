@@ -44,6 +44,12 @@ img {
   .home-header-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
 }
 
+/* Post article two-column → single column on tablet/mobile */
+@media (max-width: 860px) {
+  .post-article-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
+  .post-sidebar { position: static !important; display: flex; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 32px; border-bottom: 1px solid var(--color-border); padding-bottom: 24px; }
+}
+
 /* Mobile */
 @media (max-width: 640px) {
   .card-grid         { grid-template-columns: 1fr !important; }
