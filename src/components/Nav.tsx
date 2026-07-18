@@ -11,60 +11,53 @@ export default function Nav({ categories }: { categories: Category[] }) {
   return (
     <>
       <header style={{
-        backgroundColor: 'var(--color-paper)',
+        backgroundColor: 'var(--color-bg)',
         position: 'sticky',
         top: 0,
         zIndex: 50,
         width: '100%',
-        boxShadow: '0 1px 0 rgba(52,50,202,0.07)',
+        borderBottom: '1px solid var(--color-border)',
       }}>
         <div style={{
           maxWidth: '1200px',
           margin: '0 auto',
-          padding: '0 20px',
-          height: '52px',
+          padding: '0 24px',
+          height: '56px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
         }}>
-          {/* Logo */}
           <Link href="/" onClick={() => setMenuOpen(false)} style={{
+            fontFamily: 'var(--font-fraunces)',
             fontWeight: 700,
             fontSize: '15px',
-            color: 'var(--color-blue)',
+            color: 'var(--color-text)',
             textDecoration: 'none',
             letterSpacing: '-0.02em',
             flexShrink: 0,
-            fontFamily: 'var(--font-fraunces)',
           }}>
-            ✦ The Pilgrim's Venture
+            The Pilgrim&apos;s Venture
           </Link>
 
-          {/* Desktop nav */}
-          <nav style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '28px',
-          }} className="desktop-nav">
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '32px' }} className="desktop-nav">
             {categories.map(cat => (
               <Link key={cat._id} href={`/${cat.slug}`} style={{
                 fontSize: '14px',
-                color: 'var(--color-blue)',
+                color: 'var(--color-text)',
                 textDecoration: 'none',
-                opacity: 0.7,
+                opacity: 0.6,
                 whiteSpace: 'nowrap',
               }}>
                 {lang === 'en' ? cat.name_en : (cat.name_ko || cat.name_en)}
               </Link>
             ))}
-            <Link href="/about" style={{ fontSize: '14px', color: 'var(--color-blue)', textDecoration: 'none', opacity: 0.7, whiteSpace: 'nowrap' }}>
+            <Link href="/about" style={{ fontSize: '14px', color: 'var(--color-text)', textDecoration: 'none', opacity: 0.6, whiteSpace: 'nowrap' }}>
               {lang === 'en' ? 'About' : '소개'}
             </Link>
           </nav>
 
-          {/* Right: search + toggle + hamburger */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0 }}>
-            <Link href="/search" style={{ color: 'var(--color-blue)', opacity: 0.7, display: 'flex', alignItems: 'center' }} aria-label="Search">
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexShrink: 0 }}>
+            <Link href="/search" style={{ color: 'var(--color-text)', opacity: 0.5, display: 'flex', alignItems: 'center' }} aria-label="Search">
               <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833zm-5.242 1.156a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z"/>
               </svg>
@@ -72,91 +65,61 @@ export default function Nav({ categories }: { categories: Category[] }) {
             <button
               onClick={() => setLang(lang === 'en' ? 'ko' : 'en')}
               style={{
-                fontSize: '11px',
-                color: 'var(--color-blue)',
-                border: '1px solid var(--color-blue)',
-                borderRadius: '999px',
-                padding: '3px 10px',
+                fontSize: '12px',
+                color: 'var(--color-text)',
+                opacity: 0.5,
                 background: 'transparent',
+                border: 'none',
                 cursor: 'pointer',
-                letterSpacing: '0.05em',
-                fontWeight: 500,
+                padding: 0,
+                fontFamily: 'var(--font-jakarta)',
               }}
               aria-label="Toggle language"
             >
-              <span style={{ fontWeight: lang === 'en' ? 700 : 400, opacity: lang === 'en' ? 1 : 0.4 }}>EN</span>
-              <span style={{ margin: '0 3px', opacity: 0.3 }}>·</span>
-              <span style={{ fontWeight: lang === 'ko' ? 700 : 400, opacity: lang === 'ko' ? 1 : 0.4 }}>KO</span>
+              {lang === 'en' ? 'KO' : 'EN'}
             </button>
-            {/* Hamburger — mobile only */}
             <button
               onClick={() => setMenuOpen(o => !o)}
               aria-label="Toggle menu"
               className="hamburger-btn"
-              style={{
-                display: 'none',
-                background: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
-                padding: '4px',
-                color: 'var(--color-blue)',
-              }}
+              style={{ display: 'none', background: 'transparent', border: 'none', cursor: 'pointer', padding: '4px', color: 'var(--color-text)' }}
             >
               {menuOpen ? (
-                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M6 18L18 6M6 6l12 12"/>
-                </svg>
+                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
               ) : (
-                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path d="M4 6h16M4 12h16M4 18h16"/>
-                </svg>
+                <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
               )}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile dropdown menu */}
       {menuOpen && (
-        <div className="mobile-menu" style={{
-          position: 'fixed',
-          top: '52px',
-          left: 0,
-          right: 0,
-          backgroundColor: 'var(--color-paper)',
+        <div style={{
+          position: 'fixed', top: '56px', left: 0, right: 0,
+          backgroundColor: 'var(--color-bg)',
           borderBottom: '1px solid var(--color-border)',
-          zIndex: 49,
-          padding: '16px 20px 24px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '0',
+          zIndex: 49, padding: '16px 24px 24px',
+          display: 'flex', flexDirection: 'column',
         }}>
           {categories.map(cat => (
             <Link key={cat._id} href={`/${cat.slug}`} onClick={() => setMenuOpen(false)} style={{
-              fontSize: '18px',
-              fontWeight: 600,
-              color: 'var(--color-blue)',
-              textDecoration: 'none',
-              padding: '14px 0',
+              fontSize: '18px', fontWeight: 600, color: 'var(--color-text)',
+              textDecoration: 'none', padding: '14px 0',
               borderBottom: '1px solid var(--color-border)',
-              letterSpacing: '-0.01em',
             }}>
               {lang === 'en' ? cat.name_en : (cat.name_ko || cat.name_en)}
             </Link>
           ))}
           <Link href="/about" onClick={() => setMenuOpen(false)} style={{
-            fontSize: '18px',
-            fontWeight: 600,
-            color: 'var(--color-blue)',
-            textDecoration: 'none',
-            padding: '14px 0',
+            fontSize: '18px', fontWeight: 600, color: 'var(--color-text)',
+            textDecoration: 'none', padding: '14px 0',
           }}>
             {lang === 'en' ? 'About' : '소개'}
           </Link>
         </div>
       )}
 
-      {/* Inline styles for responsive nav */}
       <style>{`
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }

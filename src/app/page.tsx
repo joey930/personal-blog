@@ -13,58 +13,68 @@ export default async function HomePage() {
   const remaining = posts.filter((p: any) => p._id !== featured?._id && p.slug?.current)
 
   return (
-    <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '48px 24px 32px' }} className="page-padding">
+    <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '64px 24px 80px' }} className="page-padding">
 
-      {/* Masthead */}
-      <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-        <p style={{
-          fontSize: '11px',
-          letterSpacing: '0.12em',
-          textTransform: 'uppercase',
-          color: 'var(--color-blue)',
-          opacity: 0.4,
-          margin: '0 0 16px',
-        }}>
-          Faith · Work · Life
-        </p>
+      {/* Header — title left, description right */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        gap: '48px',
+        alignItems: 'end',
+        marginBottom: '64px',
+        paddingBottom: '48px',
+        borderBottom: '1px solid var(--color-border)',
+      }} className="home-header-grid">
         <h1 style={{
-          fontSize: 'clamp(36px, 6vw, 76px)',
-          fontWeight: 800,
-          letterSpacing: '-0.04em',
-          color: 'var(--color-blue)',
-          margin: '0 0 12px',
-          lineHeight: 1,
           fontFamily: 'var(--font-fraunces)',
+          fontSize: 'clamp(40px, 6vw, 80px)',
+          fontWeight: 700,
+          letterSpacing: '-0.04em',
+          color: 'var(--color-text)',
+          margin: 0,
+          lineHeight: 1,
         }}>
           The Pilgrim&apos;s Venture
         </h1>
-        <p style={{
-          fontSize: 'clamp(13px, 1.4vw, 15px)',
-          fontStyle: 'italic',
-          color: 'var(--color-blue)',
-          opacity: 0.4,
-          margin: 0,
-          letterSpacing: '0.02em',
-        }}>
-          faith, work and the long walk home
-        </p>
+        <div>
+          <p style={{
+            fontSize: '16px',
+            lineHeight: 1.7,
+            color: 'var(--color-muted)',
+            margin: '0 0 20px',
+            fontStyle: 'italic',
+            fontFamily: 'var(--font-fraunces)',
+          }}>
+            faith, work and the long walk home
+          </p>
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+            {['Wellness', 'Christianity', 'Business'].map(cat => (
+              <span key={cat} style={{
+                fontSize: '13px',
+                color: 'var(--color-accent)',
+                fontWeight: 500,
+              }}>{cat}</span>
+            ))}
+          </div>
+        </div>
       </div>
 
+      {/* Featured post */}
       {featured && featured.slug?.current && <HeroPost post={featured} />}
       {!featured && (
-        <div style={{
-          backgroundColor: 'var(--color-paper)',
-          padding: '80px',
-          textAlign: 'center',
-          color: 'var(--color-blue)',
-          opacity: 0.4,
-          borderRadius: '2px',
-        }}>
+        <p style={{ color: 'var(--color-muted)', textAlign: 'center', padding: '80px 0' }}>
           No posts yet — write one in Sanity Studio.
-        </div>
+        </p>
       )}
+
+      {/* Post grid */}
       {remaining.length > 0 && (
-        <div style={{ marginTop: '16px', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 340px), 1fr))', gap: '12px' }} className="card-grid">
+        <div style={{
+          marginTop: '48px',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 320px), 1fr))',
+          gap: '40px',
+        }} className="card-grid">
           {remaining.map((post: any) => (
             <PostCard key={post._id} post={post} />
           ))}

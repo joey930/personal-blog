@@ -2,25 +2,25 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --color-blue: #3432CA;
-  --color-bg: #EEEEE8;
-  --color-paper: #FAFAF6;
-  --color-border: rgba(52, 50, 202, 0.1);
-  --color-ink: #3432CA;
-  --color-wellness: #3432CA;
-  --color-christianity: #3432CA;
-  --color-business: #3432CA;
+  --color-bg: #FAFAF9;
+  --color-paper: #FAFAF9;
+  --color-text: #1C1917;
+  --color-accent: #C96442;
+  --color-muted: #78716C;
+  --color-border: rgba(28, 25, 23, 0.1);
+  /* keep these for any legacy refs */
+  --color-blue: #1C1917;
+  --color-ink: #1C1917;
 }
 
-html {
-  overflow-x: hidden;
-}
+html { overflow-x: hidden; }
 
 body {
   background-color: var(--color-bg);
-  color: var(--color-blue);
+  color: var(--color-text);
   overflow-x: hidden;
   min-height: 100svh;
+  font-family: var(--font-jakarta), system-ui, sans-serif;
 }
 
 * {
@@ -38,6 +38,10 @@ img {
   .hero-padding    { padding: 32px 32px !important; }
   .page-padding    { padding: 24px 20px !important; }
   .post-body-padding { padding: 32px 32px !important; }
+}
+
+@media (max-width: 768px) {
+  .home-header-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
 }
 
 /* Mobile */

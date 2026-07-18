@@ -8,9 +8,7 @@ import type { Post } from '@/lib/types'
 export default function PostCard({ post }: { post: Post }) {
   const { lang } = useLanguage()
   const title = lang === 'en' ? post.title_en : (post.title_ko || post.title_en)
-  const label = lang === 'en'
-    ? post.category?.name_en
-    : (post.category?.name_ko || post.category?.name_en)
+  const label = lang === 'en' ? post.category?.name_en : (post.category?.name_ko || post.category?.name_en)
   const slug = post.category?.slug
   const date = new Date(post.published_at).toLocaleDateString(
     lang === 'ko' ? 'ko-KR' : 'en-US',
@@ -21,10 +19,9 @@ export default function PostCard({ post }: { post: Post }) {
 
   return (
     <Link href={`/${slug}/${post.slug.current}`} style={{ textDecoration: 'none', display: 'block' }}>
-      <article style={{ backgroundColor: 'var(--color-paper)', overflow: 'hidden' }}>
-        {/* Image */}
+      <article>
         {post.cover_image && (
-          <div style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden', backgroundColor: '#ddd' }}>
+          <div style={{ position: 'relative', aspectRatio: '16/9', overflow: 'hidden', borderRadius: '6px', backgroundColor: '#ddd', marginBottom: '16px' }}>
             <Image
               src={urlFor(post.cover_image).width(600).height(338).url()}
               alt={title}
@@ -33,33 +30,28 @@ export default function PostCard({ post }: { post: Post }) {
             />
           </div>
         )}
-
-        {/* Text */}
-        <div className="hero-padding" style={{ padding: '20px 24px 22px' }}>
-          <p style={{
-            fontSize: '11px',
-            fontWeight: 600,
-            color: 'var(--color-blue)',
-            opacity: 0.45,
-            textTransform: 'uppercase',
-            letterSpacing: '0.1em',
-            margin: '0 0 8px',
-          }}>
-            {label}
-          </p>
-          <h2 style={{
-            fontSize: '18px',
-            fontWeight: 800,
-            lineHeight: 1.25,
-            color: 'var(--color-blue)',
-            letterSpacing: '-0.02em',
-            margin: '0 0 10px',
-            fontFamily: 'var(--font-fraunces)',
-          }}>
-            {title}
-          </h2>
-          <p style={{ fontSize: '12px', color: 'var(--color-blue)', opacity: 0.4, margin: 0 }}>{date}</p>
-        </div>
+        <p style={{
+          fontSize: '11px',
+          fontWeight: 600,
+          color: 'var(--color-accent)',
+          textTransform: 'uppercase',
+          letterSpacing: '0.08em',
+          margin: '0 0 8px',
+        }}>
+          {label}
+        </p>
+        <h2 style={{
+          fontFamily: 'var(--font-fraunces)',
+          fontSize: '18px',
+          fontWeight: 700,
+          lineHeight: 1.3,
+          color: 'var(--color-text)',
+          letterSpacing: '-0.02em',
+          margin: '0 0 8px',
+        }}>
+          {title}
+        </h2>
+        <p style={{ fontSize: '12px', color: 'var(--color-muted)', margin: 0 }}>{date}</p>
       </article>
     </Link>
   )

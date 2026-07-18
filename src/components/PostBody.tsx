@@ -20,7 +20,7 @@ const components = {
       <p style={{
         marginBottom: '1.6em',
         lineHeight: 1.85,
-        color: 'var(--color-blue)',
+        color: 'var(--color-text)',
         fontSize: '18px',
         maxWidth: '680px',
         fontFamily: 'var(--font-jakarta)',
@@ -32,7 +32,7 @@ const components = {
       <h2 style={{
         fontSize: '22px',
         fontWeight: 700,
-        color: 'var(--color-blue)',
+        color: 'var(--color-text)',
         letterSpacing: '-0.02em',
         margin: '2.5em 0 0.75em',
         fontFamily: 'var(--font-fraunces)',
@@ -42,20 +42,20 @@ const components = {
       <h3 style={{
         fontSize: '18px',
         fontWeight: 600,
-        color: 'var(--color-blue)',
+        color: 'var(--color-text)',
         margin: '2em 0 0.5em',
         fontFamily: 'var(--font-fraunces)',
       }}>{children}</h3>
     ),
     blockquote: ({ children }: any) => (
-      <blockquote className="grid-texture" style={{
-        border: '1px solid var(--color-border)',
-        padding: '32px 36px',
+      <blockquote style={{
+        borderLeft: '3px solid var(--color-accent)',
+        padding: '24px 0 24px 24px',
         margin: '2em 0',
         fontStyle: 'italic',
         fontSize: '22px',
         lineHeight: 1.55,
-        color: 'var(--color-blue)',
+        color: 'var(--color-text)',
         fontWeight: 500,
         fontFamily: 'var(--font-fraunces)',
       }}>
@@ -64,8 +64,8 @@ const components = {
     ),
   },
   list: {
-    bullet: ({ children }: any) => <ul style={{ paddingLeft: '24px', marginBottom: '1.5em', color: 'var(--color-blue)' }}>{children}</ul>,
-    number: ({ children }: any) => <ol style={{ paddingLeft: '24px', marginBottom: '1.5em', color: 'var(--color-blue)' }}>{children}</ol>,
+    bullet: ({ children }: any) => <ul style={{ paddingLeft: '24px', marginBottom: '1.5em', color: 'var(--color-text)' }}>{children}</ul>,
+    number: ({ children }: any) => <ol style={{ paddingLeft: '24px', marginBottom: '1.5em', color: 'var(--color-text)' }}>{children}</ol>,
   },
   listItem: {
     bullet: ({ children }: any) => <li style={{ marginBottom: '0.4em', lineHeight: 1.7, fontSize: '17px' }}>{children}</li>,
@@ -84,7 +84,7 @@ const components = {
           />
         </div>
         {value.caption && (
-          <figcaption style={{ fontSize: '13px', color: 'var(--color-blue)', opacity: 0.5, marginTop: '8px', fontStyle: 'italic' }}>
+          <figcaption style={{ fontSize: '13px', color: 'var(--color-text)', opacity: 0.5, marginTop: '8px', fontStyle: 'italic' }}>
             {value.caption}
           </figcaption>
         )}
@@ -111,7 +111,7 @@ const components = {
             />
           </div>
           {value.caption && (
-            <figcaption style={{ fontSize: '13px', color: 'var(--color-blue)', opacity: 0.5, marginTop: '8px', fontStyle: 'italic' }}>
+            <figcaption style={{ fontSize: '13px', color: 'var(--color-text)', opacity: 0.5, marginTop: '8px', fontStyle: 'italic' }}>
               {value.caption}
             </figcaption>
           )}
@@ -127,7 +127,7 @@ export default function PostBody({ bodyEn, bodyKo }: { bodyEn: any; bodyKo: any 
   if (!body?.length) return null
 
   return (
-    <div style={{ color: 'var(--color-blue)', maxWidth: '680px' }}>
+    <div style={{ color: 'var(--color-text)', maxWidth: '680px' }}>
       <style>{`
         .drop-cap-body > div:first-child p:first-child::first-letter {
           font-size: 4.5em;
@@ -135,7 +135,7 @@ export default function PostBody({ bodyEn, bodyKo }: { bodyEn: any; bodyKo: any 
           float: left;
           line-height: 0.8;
           margin: 0.05em 0.08em 0 0;
-          color: var(--color-blue);
+          color: var(--color-text);
         }
       `}</style>
       <div className="drop-cap-body">

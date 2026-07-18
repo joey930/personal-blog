@@ -31,31 +31,32 @@ export default async function PostPage({
     <article style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }} className="page-padding">
       {/* Hero */}
       <div className="hero-padding" style={{
-        backgroundColor: 'var(--color-paper)',
+        backgroundColor: 'var(--color-bg)',
         padding: '48px 48px 36px',
         marginBottom: '3px',
       }}>
         <p style={{
           fontSize: '11px',
           fontWeight: 600,
-          color: 'var(--color-blue)',
-          opacity: 0.45,
+          color: 'var(--color-accent)',
           textTransform: 'uppercase',
-          letterSpacing: '0.1em',
+          letterSpacing: '0.08em',
           margin: '0 0 16px',
         }}>
           {post.category?.name_en}
-          <span style={{ margin: '0 8px', opacity: 0.5 }}>·</span>
-          {new Date(post.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-          <span style={{ margin: '0 8px', opacity: 0.5 }}>·</span>
-          {readingTime} min read
+          <span style={{ margin: '0 8px', color: 'var(--color-muted)' }}>·</span>
+          <span style={{ color: 'var(--color-muted)', fontWeight: 400 }}>
+            {new Date(post.published_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            <span style={{ margin: '0 8px' }}>·</span>
+            {readingTime} min read
+          </span>
         </p>
 
         <h1 style={{
           fontSize: 'clamp(28px, 4vw, 52px)',
           fontWeight: 800,
           lineHeight: 1.1,
-          color: 'var(--color-blue)',
+          color: 'var(--color-text)',
           letterSpacing: '-0.03em',
           margin: '0 0 14px',
           maxWidth: '860px',
@@ -63,7 +64,7 @@ export default async function PostPage({
         }}>{post.title_en}</h1>
 
         {post.title_ko && (
-          <p style={{ fontSize: '17px', color: 'var(--color-blue)', opacity: 0.35, margin: 0, fontStyle: 'italic' }}>
+          <p style={{ fontSize: '17px', color: 'var(--color-muted)', margin: 0, fontStyle: 'italic' }}>
             {post.title_ko}
           </p>
         )}
@@ -90,7 +91,7 @@ export default async function PostPage({
 
       {/* Body */}
       <div className="post-body-padding" style={{
-        backgroundColor: 'var(--color-paper)',
+        backgroundColor: 'var(--color-bg)',
         padding: '48px',
       }}>
         <div className="post-body-grid" style={{
@@ -102,11 +103,10 @@ export default async function PostPage({
           {post.author_note && (
             <aside style={{
               fontSize: '14px',
-              color: 'var(--color-blue)',
-              opacity: 0.6,
+              color: 'var(--color-muted)',
               paddingLeft: '48px',
               fontStyle: 'italic',
-              borderLeft: '2px solid var(--color-bg)',
+              borderLeft: '2px solid var(--color-border)',
             }}>
               {post.author_note}
             </aside>
