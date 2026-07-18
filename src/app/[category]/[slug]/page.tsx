@@ -59,6 +59,7 @@ export default async function PostPage({
           letterSpacing: '-0.03em',
           margin: '0 0 14px',
           maxWidth: '860px',
+          fontFamily: 'var(--font-fraunces)',
         }}>{post.title_en}</h1>
 
         {post.title_ko && (

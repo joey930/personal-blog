@@ -38,6 +38,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
           color: 'var(--color-blue)',
           letterSpacing: '-0.03em',
           margin: 0,
+          fontFamily: 'var(--font-fraunces)',
         }}>
           {cat.name_en}
           {cat.name_ko && <span style={{ opacity: 0.4, fontWeight: 400, marginLeft: '12px' }}>/ {cat.name_ko}</span>}

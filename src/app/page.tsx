@@ -34,6 +34,7 @@ export default async function HomePage() {
           color: 'var(--color-blue)',
           margin: '0 0 12px',
           lineHeight: 1,
+          fontFamily: 'var(--font-fraunces)',
         }}>
           The Pilgrim&apos;s Venture
         </h1>

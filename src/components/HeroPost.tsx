@@ -39,6 +39,7 @@ export default function HeroPost({ post }: { post: Post }) {
             letterSpacing: '-0.03em',
             margin: 0,
             maxWidth: '780px',
+            fontFamily: 'var(--font-fraunces)',
           }}>
             {title}
           </h2>

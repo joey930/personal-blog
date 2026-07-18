@@ -35,6 +35,7 @@ export default function Nav({ categories }: { categories: Category[] }) {
             textDecoration: 'none',
             letterSpacing: '-0.02em',
             flexShrink: 0,
+            fontFamily: 'var(--font-fraunces)',
           }}>
             ✦ The Pilgrim's Venture
           </Link>

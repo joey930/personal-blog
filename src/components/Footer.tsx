@@ -15,7 +15,7 @@ export default function Footer({ categories }: { categories: { _id: string; name
       }}>
         {/* Left: brand */}
         <div>
-          <p style={{ fontWeight: 700, fontSize: '15px', letterSpacing: '-0.02em', color: 'var(--color-blue)', margin: '0 0 4px' }}>
+          <p style={{ fontWeight: 700, fontSize: '15px', letterSpacing: '-0.02em', color: 'var(--color-blue)', margin: '0 0 4px', fontFamily: 'var(--font-fraunces)' }}>
             ✦ The Pilgrim&apos;s Venture
           </p>
           <p style={{ fontSize: '13px', fontStyle: 'italic', color: 'var(--color-blue)', opacity: 0.5, margin: '0 0 20px' }}>

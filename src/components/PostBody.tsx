@@ -23,6 +23,7 @@ const components = {
         color: 'var(--color-blue)',
         fontSize: '18px',
         maxWidth: '680px',
+        fontFamily: 'var(--font-jakarta)',
       }}>
         {children}
       </p>
@@ -34,6 +35,7 @@ const components = {
         color: 'var(--color-blue)',
         letterSpacing: '-0.02em',
         margin: '2.5em 0 0.75em',
+        fontFamily: 'var(--font-fraunces)',
       }}>{children}</h2>
     ),
     h3: ({ children }: any) => (
@@ -42,6 +44,7 @@ const components = {
         fontWeight: 600,
         color: 'var(--color-blue)',
         margin: '2em 0 0.5em',
+        fontFamily: 'var(--font-fraunces)',
       }}>{children}</h3>
     ),
     blockquote: ({ children }: any) => (
@@ -50,10 +53,11 @@ const components = {
         padding: '32px 36px',
         margin: '2em 0',
         fontStyle: 'italic',
-        fontSize: '20px',
+        fontSize: '22px',
         lineHeight: 1.55,
         color: 'var(--color-blue)',
         fontWeight: 500,
+        fontFamily: 'var(--font-fraunces)',
       }}>
         {children}
       </blockquote>

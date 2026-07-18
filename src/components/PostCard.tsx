@@ -54,6 +54,7 @@ export default function PostCard({ post }: { post: Post }) {
             color: 'var(--color-blue)',
             letterSpacing: '-0.02em',
             margin: '0 0 10px',
+            fontFamily: 'var(--font-fraunces)',
           }}>
             {title}
           </h2>
