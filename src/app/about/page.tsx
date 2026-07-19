@@ -9,7 +9,7 @@ export default async function AboutPage() {
   const about = await sanityClient.fetch(aboutQuery)
 
   return (
-    <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }}>
+    <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '32px 24px' }}>
       <div className="grid-texture" style={{
         border: '1px solid var(--color-border)',
         backgroundColor: 'var(--color-paper)',

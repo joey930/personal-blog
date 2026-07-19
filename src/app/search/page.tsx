@@ -30,7 +30,7 @@ export default function SearchPage() {
   }
 
   return (
-    <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }} className="page-padding">
+    <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '32px 24px' }} className="page-padding">
       <div className="grid-texture hero-padding" style={{
         border: '1px solid var(--color-border)',
         backgroundColor: 'var(--color-paper)',

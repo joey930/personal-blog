@@ -13,7 +13,10 @@
   --color-ink: #1C1917;
 }
 
-html { overflow-x: hidden; }
+html {
+  overflow-x: hidden;
+  scrollbar-gutter: stable;
+}
 
 body {
   background-color: var(--color-bg);

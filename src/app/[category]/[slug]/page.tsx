@@ -31,7 +31,7 @@ export default async function PostPage({
   })
 
   return (
-    <article style={{ maxWidth: '1100px', margin: '0 auto', padding: '56px 24px 96px' }} className="page-padding">
+    <article style={{ maxWidth: '1200px', margin: '0 auto', padding: '56px 24px 96px' }} className="page-padding">
 
       {/* Header */}
       <header style={{ maxWidth: '780px', marginBottom: '40px' }}>

@@ -16,7 +16,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
   const posts = await sanityClient.fetch(postsByCategorySlugQuery, { slug })
 
   return (
-    <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }} className="page-padding">
+    <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '32px 24px' }} className="page-padding">
       <header className="hero-padding" style={{
         backgroundColor: 'var(--color-bg)',
         padding: '40px 48px',
