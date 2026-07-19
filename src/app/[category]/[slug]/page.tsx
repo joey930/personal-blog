@@ -32,6 +32,27 @@ export default async function PostPage({
 
   return (
     <article style={{ maxWidth: '1200px', margin: '0 auto', padding: '56px 24px 96px' }} className="page-padding">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            headline: post.title_en,
+            description: post.body_en
+              ?.find((b: any) => b._type === 'block' && b.style === 'normal')
+              ?.children?.map((c: any) => c.text || '').join('').slice(0, 160) || '',
+            datePublished: post.published_at,
+            dateModified: post.published_at,
+            author: { '@type': 'Person', name: 'Joey Kim', url: 'https://joeykim.co' },
+            publisher: { '@type': 'Person', name: 'Joey Kim', url: 'https://joeykim.co' },
+            url: `https://joeykim.co/${post.category?.slug}/${post.slug?.current}`,
+            image: post.cover_image ? urlFor(post.cover_image).width(1200).height(630).url() : undefined,
+            inLanguage: 'en-US',
+            keywords: post.category?.name_en,
+          }),
+        }}
+      />
 
       {/* Header */}
       <header style={{ maxWidth: '780px', marginBottom: '40px' }}>
@@ -138,13 +159,36 @@ export async function generateMetadata({
   const { slug } = await params
   const post = await sanityClient.fetch(postBySlugQuery, { slug })
   if (!post) return {}
+
+  // Extract first paragraph as description
+  const firstParagraph = post.body_en
+    ?.find((b: any) => b._type === 'block' && b.style === 'normal')
+    ?.children?.map((c: any) => c.text || '')
+    .join('') || ''
+  const description = firstParagraph.slice(0, 160).trim()
+
+  const ogImage = post.cover_image
+    ? urlFor(post.cover_image).width(1200).height(630).url()
+    : undefined
+
   return {
     title: post.title_en,
+    description,
     openGraph: {
       title: post.title_en,
-      images: post.cover_image
-        ? [urlFor(post.cover_image).width(1200).height(630).url()]
-        : [],
+      description,
+      type: 'article',
+      publishedTime: post.published_at,
+      authors: ['Joey Kim'],
+      tags: [post.category?.name_en],
+      images: ogImage ? [{ url: ogImage, width: 1200, height: 630, alt: post.title_en }] : [],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title_en,
+      description,
+      images: ogImage ? [ogImage] : [],
+    },
+    alternates: { canonical: `https://joeykim.co/${post.category?.slug}/${post.slug?.current}` },
   }
 }

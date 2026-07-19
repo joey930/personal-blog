@@ -39,8 +39,31 @@ const notoSansKR = Noto_Sans_KR({
 })
 
 export const metadata: Metadata = {
-  title: "The Pilgrim's Venture",
-  description: 'faith, work and the long walk home',
+  metadataBase: new URL('https://joeykim.co'),
+  title: {
+    default: "The Pilgrim's Venture",
+    template: "%s | The Pilgrim's Venture",
+  },
+  description: 'faith, work and the long walk home — reflections on building, believing, and living well by Joey Kim.',
+  keywords: ['faith', 'wellness', 'entrepreneurship', 'Korean-American', 'Christianity', 'business', 'personal blog'],
+  authors: [{ name: 'Joey Kim', url: 'https://joeykim.co' }],
+  creator: 'Joey Kim',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://joeykim.co',
+    siteName: "The Pilgrim's Venture",
+    title: "The Pilgrim's Venture",
+    description: 'faith, work and the long walk home',
+    images: [{ url: '/og-default.png', width: 1200, height: 630, alt: "The Pilgrim's Venture" }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "The Pilgrim's Venture",
+    description: 'faith, work and the long walk home',
+    creator: '@joeykim',
+  },
+  alternates: { canonical: 'https://joeykim.co' },
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
