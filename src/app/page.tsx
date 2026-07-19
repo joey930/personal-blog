@@ -27,7 +27,7 @@ export default async function HomePage() {
       }} className="home-header-grid">
         <h1 style={{
           fontFamily: 'var(--font-fraunces)',
-          fontSize: 'clamp(40px, 6vw, 80px)',
+          fontSize: 'clamp(44px, 7vw, 92px)',
           fontWeight: 700,
           letterSpacing: '-0.04em',
           color: 'var(--color-text)',

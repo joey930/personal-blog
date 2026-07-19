@@ -46,7 +46,7 @@ export default async function PostPage({
         </p>
         <h1 style={{
           fontFamily: 'var(--font-fraunces)',
-          fontSize: 'clamp(30px, 4.5vw, 56px)',
+          fontSize: 'clamp(34px, 5vw, 64px)',
           fontWeight: 700,
           lineHeight: 1.1,
           color: 'var(--color-text)',

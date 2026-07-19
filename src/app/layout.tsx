@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Fraunces, Plus_Jakarta_Sans, Noto_Serif_KR, Noto_Sans_KR } from 'next/font/google'
+import { Cormorant_Garamond, Plus_Jakarta_Sans, Noto_Serif_KR, Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/context/LanguageContext'
 import Nav from '@/components/Nav'
@@ -7,12 +7,13 @@ import Footer from '@/components/Footer'
 import { sanityClient } from '@/lib/sanity'
 import { allCategoriesQuery } from '@/lib/queries'
 
-// Fraunces — optical-size variable serif, the headline font of 2024-2026
-const fraunces = Fraunces({
+// Cormorant Garamond — ultra-elegant high-contrast serif, luxury editorial
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
   variable: '--font-fraunces',
   display: 'swap',
-  axes: ['opsz', 'WONK'],
+  weight: ['300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
 })
 
 // Plus Jakarta Sans — modern, clean, widely used in contemporary design
@@ -47,7 +48,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang="en">
-      <body className={`${fraunces.variable} ${jakartaSans.variable} ${notoSerifKR.variable} ${notoSansKR.variable}`}>
+      <body className={`${cormorant.variable} ${jakartaSans.variable} ${notoSerifKR.variable} ${notoSansKR.variable}`}>
         <LanguageProvider>
           <Nav categories={categories} />
           {children}
