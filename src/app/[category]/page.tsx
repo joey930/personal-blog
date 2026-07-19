@@ -56,5 +56,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
 export async function generateStaticParams() {
   const categories = await sanityClient.fetch(allCategoriesQuery)
-  return categories.map((cat: any) => ({ category: cat.slug }))
+  return categories
+    .filter((cat: any) => typeof cat.slug === 'string' && cat.slug)
+    .map((cat: any) => ({ category: String(cat.slug) }))
 }
