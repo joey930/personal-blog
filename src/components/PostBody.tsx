@@ -23,7 +23,7 @@ export default function PostBody({ bodyEn, bodyKo }: { bodyEn: any; bodyKo: any 
   // Typography tokens per language
   const t = isKo ? {
     bodyFont:    'var(--font-noto-sans-kr), sans-serif',
-    bodyWeight:  400,
+    bodyWeight:  300,
     headFont:    'var(--font-noto-serif-kr), serif',
     bodySize:    '17px',
     bodyLine:    2.05,
