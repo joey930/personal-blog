@@ -23,6 +23,7 @@ export default function PostBody({ bodyEn, bodyKo }: { bodyEn: any; bodyKo: any 
   // Typography tokens per language
   const t = isKo ? {
     bodyFont:    'var(--font-noto-sans-kr), sans-serif',
+    bodyWeight:  400,
     headFont:    'var(--font-noto-serif-kr), serif',
     bodySize:    '17px',
     bodyLine:    2.05,
@@ -38,6 +39,7 @@ export default function PostBody({ bodyEn, bodyKo }: { bodyEn: any; bodyKo: any 
     listLine:    2.0,
   } : {
     bodyFont:    'var(--font-jakarta), system-ui, sans-serif',
+    bodyWeight:  300,
     headFont:    'var(--font-fraunces), Georgia, serif',
     bodySize:    '18px',
     bodyLine:    1.85,
@@ -62,6 +64,7 @@ export default function PostBody({ bodyEn, bodyKo }: { bodyEn: any; bodyKo: any 
           color: 'var(--color-text)',
           fontSize: t.bodySize,
           fontFamily: t.bodyFont,
+          fontWeight: t.bodyWeight,
           wordBreak: isKo ? 'keep-all' : 'normal',
         }}>
           {children}
@@ -182,7 +185,7 @@ export default function PostBody({ bodyEn, bodyKo }: { bodyEn: any; bodyKo: any 
           }
         `}</style>
       )}
-      <div className={isKo ? '' : 'drop-cap-body'}>
+      <div className={isKo ? 'post-body-ko' : 'drop-cap-body post-body-en'}>
         <PortableText value={body} components={components} />
       </div>
     </div>

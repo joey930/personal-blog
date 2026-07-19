@@ -53,6 +53,12 @@ img {
   .post-sidebar { position: static !important; display: flex; flex-wrap: wrap; gap: 12px 24px; margin-bottom: 32px; border-bottom: 1px solid var(--color-border); padding-bottom: 24px; }
 }
 
+/* Mobile body text — smaller and lighter */
+@media (max-width: 640px) {
+  .post-body-en p { font-size: 15.5px !important; line-height: 1.8 !important; }
+  .post-body-ko p { font-size: 14.5px !important; line-height: 1.95 !important; }
+}
+
 /* Mobile */
 @media (max-width: 640px) {
   .card-grid         { grid-template-columns: 1fr !important; }
