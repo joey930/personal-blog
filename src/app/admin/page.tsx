@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
 import AdminLogin from './AdminLogin'
+import AdminDashboard from './AdminDashboard'
 
 export default async function AdminPage() {
   const cookieStore = await cookies()
@@ -8,7 +8,7 @@ export default async function AdminPage() {
   const isAuthenticated = auth?.value === process.env.ADMIN_PASSWORD
 
   if (isAuthenticated) {
-    redirect('/admin/studio')
+    return <AdminDashboard />
   }
 
   return <AdminLogin />

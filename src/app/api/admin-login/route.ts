@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   res.cookies.set('admin_auth', process.env.ADMIN_PASSWORD!, {
     httpOnly: true,
     secure: true,
-    sameSite: 'strict',
+    sameSite: 'lax',
     maxAge: 60 * 60 * 24 * 30, // 30 days
     path: '/',
   })
