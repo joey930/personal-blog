@@ -1,110 +1,51 @@
-'use client'
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { cookies } from 'next/headers'
+import AdminLogin from './AdminLogin'
 
-export default function AdminLogin() {
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
+export default async function AdminPage() {
+  const cookieStore = await cookies()
+  const authCookie = cookieStore.get('admin_auth')
+  const isAuthenticated = authCookie?.value === process.env.ADMIN_PASSWORD
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setLoading(true)
-    setError('')
+  if (isAuthenticated) {
+    return (
+      <div style={{ position: 'fixed', inset: 0, display: 'flex', flexDirection: 'column' }}>
+        {/* Thin header bar */}
+        <div style={{
+          height: '36px',
+          backgroundColor: '#101010',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0 16px',
+          flexShrink: 0,
+        }}>
+          <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '12px', fontFamily: 'sans-serif' }}>
+            ✦ The Pilgrim's Venture — Studio
+          </span>
+          <form method="POST" action="/api/admin-logout">
+            <button type="submit" style={{
+              fontSize: '11px',
+              color: 'rgba(255,255,255,0.4)',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              fontFamily: 'sans-serif',
+            }}>
+              Sign out
+            </button>
+          </form>
+        </div>
 
-    const res = await fetch('/api/admin-login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password }),
-    })
-
-    if (res.ok) {
-      window.location.href = 'https://studio-six-livid-18.vercel.app'
-    } else {
-      setError('Wrong password.')
-      setLoading(false)
-    }
+        {/* Studio iframe */}
+        <iframe
+          src="https://studio-six-livid-18.vercel.app"
+          style={{ flex: 1, border: 'none', width: '100%' }}
+          allow="clipboard-write"
+          title="Sanity Studio"
+        />
+      </div>
+    )
   }
 
-  return (
-    <main style={{
-      minHeight: '100svh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: 'var(--color-bg)',
-    }}>
-      <div style={{ width: '100%', maxWidth: '360px', padding: '0 24px' }}>
-        {/* Logo */}
-        <p style={{
-          fontFamily: 'var(--font-fraunces)',
-          fontSize: '18px',
-          fontWeight: 700,
-          color: 'var(--color-text)',
-          textAlign: 'center',
-          marginBottom: '40px',
-          letterSpacing: '-0.02em',
-        }}>
-          ✦ The Pilgrim's Venture
-        </p>
-
-        <form onSubmit={handleSubmit}>
-          <div style={{ marginBottom: '16px' }}>
-            <input
-              type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder="Password"
-              autoFocus
-              required
-              style={{
-                width: '100%',
-                padding: '14px 16px',
-                fontSize: '15px',
-                fontFamily: 'var(--font-jakarta)',
-                color: 'var(--color-text)',
-                backgroundColor: 'var(--color-paper)',
-                border: '1px solid var(--color-border)',
-                borderRadius: '4px',
-                outline: 'none',
-                boxSizing: 'border-box',
-              }}
-            />
-          </div>
-
-          {error && (
-            <p style={{
-              fontSize: '13px',
-              color: 'var(--color-accent)',
-              marginBottom: '12px',
-              textAlign: 'center',
-            }}>
-              {error}
-            </p>
-          )}
-
-          <button
-            type="submit"
-            disabled={loading || !password}
-            style={{
-              width: '100%',
-              padding: '14px',
-              fontSize: '14px',
-              fontWeight: 600,
-              fontFamily: 'var(--font-jakarta)',
-              color: 'var(--color-paper)',
-              backgroundColor: loading ? 'var(--color-muted)' : 'var(--color-text)',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: loading ? 'not-allowed' : 'pointer',
-              transition: 'opacity 0.15s',
-            }}
-          >
-            {loading ? 'Entering...' : 'Enter Studio'}
-          </button>
-        </form>
-      </div>
-    </main>
-  )
+  return <AdminLogin />
 }
